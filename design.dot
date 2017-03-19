@@ -1,0 +1,24 @@
+digraph {
+  a[label="ProcessDBStreamForAuthorsTableUpdate.js"];
+  b[label="RefreshPriceForTitle.js"];
+  c[label="RefreshTitlesForAuthor.js"];
+  d[label="ScheduleTrigger"];
+  e[label="ProcessDBStreamForTitlesTableUpdate.js"];
+  f[label="AuthorsTable"];
+  g[label="TitlesTable"];
+  h[label="ExternalUpdate"];
+  i[label="RefreshPriceForAllTitles.js"];
+  j[label="RefreshTitlesForAllAuthors.js"];
+
+  f -> a[label="update triggers lambda"];
+  a -> c[label="lambda triggers lambda"];
+  c -> g[label="lambda updates table"];
+  g -> e[label="update triggers lambda"];
+  e -> b[label="lambda triggers lambda"];
+  b -> g[label="lambda updates table"];
+  d -> i[label="schedule triggers lambda"];
+  d -> j[label="schedule triggers lambda"];
+  i -> g[label="lambda updates table"];
+  j -> g[label="lambda updates table"];
+  h -> f[label="external update to table"];
+}
