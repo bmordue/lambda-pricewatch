@@ -1,20 +1,22 @@
 #!/bin/sh
-source ./deploy.env
+set -e
 
 # 1. Create DynamoDB tables -- completed manually for now
 # 2. Create IAM roles -- completed manually for now
 
-# 3. Create event stream mappings
+# 3. Deploy Lambda functions
 
-# 4. Deploy Lambda functions
-SRC_DIR="$(dirname "$(realpath $0)")"/../src
+PROJECT_DIR="$(dirname "$(realpath $0)")"/..
+SRC_DIR=$PROJECT_DIR/src
+TARGET_DIR=$PROJECT_DIR/target
 ORIGINAL_DIR=$(pwd)
 
 echo 'Zipping lambda function source files'
+mkdir -p $TARGET_DIR
 cd $SRC_DIR
 for f in $(ls -1 *.js)
 do
-  zip ${f%.js}.zip $f
+  zip $TARGET_DIR/${f%.js}.zip $f
 done
 
 echo 'Deploying lambda functions to AWS'
@@ -23,7 +25,7 @@ echo 'Deploy ProcessDBStreamForAuthorsTableUpdate'
 aws lambda create-function \
   --region $AWS_REGION \
   --function-name ProcessDBStreamForAuthorsTableUpdate \
-  --zip-file fileb://$SRC_DIR/ProcessDBStreamForAuthorsTableUpdate.zip \
+  --zip-file fileb://$TARGET_DIR/ProcessDBStreamForAuthorsTableUpdate.zip \
   --role $execution_with_dynamodb_stream_role \
   --handler ProcessDBStreamForAuthorsTableUpdate.lambda_handler \
   --runtime nodejs4.3
@@ -32,7 +34,7 @@ echo 'Deploy RefreshPriceForAllTitles'
 aws lambda create-function \
   --region $AWS_REGION \
   --function-name RefreshPriceForAllTitles \
-  --zip-file fileb://$SRC_DIR/RefreshPriceForAllTitles.zip \
+  --zip-file fileb://$TARGET_DIR/RefreshPriceForAllTitles.zip \
   --role $basic_execution_role \
   --handler RefreshPriceForAllTitles.lambda_handler \
   --runtime nodejs4.3
@@ -41,7 +43,7 @@ echo 'Deploy RefreshPriceForTitle'
 aws lambda create-function \
   --region $AWS_REGION \
   --function-name RefreshPriceForTitle \
-  --zip-file fileb://$SRC_DIR/RefreshPriceForTitle.zip \
+  --zip-file fileb://$TARGET_DIR/RefreshPriceForTitle.zip \
   --role $execution_with_dynamodb_full_access_role \
   --handler RefreshPriceForTitle.lambda_handler \
   --runtime nodejs4.3
@@ -50,7 +52,7 @@ echo 'Deploy RefreshPriceForAllAuthors'
 aws lambda create-function \
   --region $AWS_REGION \
   --function-name RefreshPriceForAllAuthors \
-  --zip-file fileb://$SRC_DIR/RefreshPriceForAllTitles.zip \
+  --zip-file fileb://$TARGET_DIR/RefreshPriceForAllTitles.zip \
   --role $basic_execution_role \
   --handler RefreshPriceForAllAuthors.lambda_handler \
   --runtime nodejs4.3
@@ -59,10 +61,13 @@ echo 'Deploy RefreshTitlesForAuthor'
 aws lambda create-function \
   --region $AWS_REGION \
   --function-name RefreshTitlesForAuthor \
-  --zip-file fileb://$SRC_DIR/RefreshTitlesForAuthor.zip \
+  --zip-file fileb://$TARGET_DIR/RefreshTitlesForAuthor.zip \
   --role $execution_with_dynamodb_full_access_role \
   --handler RefreshTitlesForAuthor.lambda_handler \
   --runtime nodejs4.3
+
+# 4. Create event stream mappings
+# TODO
 
 set +x
 cd $ORIGINAL_DIR
