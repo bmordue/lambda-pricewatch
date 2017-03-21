@@ -15,7 +15,7 @@ aws lambda create-function \
   --region $AWS_REGION \
   --function-name ProcessDBStreamForAuthorsTableUpdate \
   --zip-file fileb://$TARGET_DIR/ProcessDBStreamForAuthorsTableUpdate.zip \
-  --role $execution_with_dynamodb_stream_role \
+  --role $execution_with_dynamodb_stream_role_AND_SNS_PUBLISH \
   --handler ProcessDBStreamForAuthorsTableUpdate.lambda_handler \
   --runtime nodejs4.3
 
@@ -24,7 +24,7 @@ aws lambda create-function \
   --region $AWS_REGION \
   --function-name RefreshPriceForAllTitles \
   --zip-file fileb://$TARGET_DIR/RefreshPriceForAllTitles.zip \
-  --role $basic_execution_role \
+  --role $basic_execution_role_AND_SNS_PUBLISH \
   --handler RefreshPriceForAllTitles.lambda_handler \
   --runtime nodejs4.3
 
@@ -33,7 +33,7 @@ aws lambda create-function \
   --region $AWS_REGION \
   --function-name RefreshPriceForTitle \
   --zip-file fileb://$TARGET_DIR/RefreshPriceForTitle.zip \
-  --role $execution_with_dynamodb_full_access_role \
+  --role $execution_with_dynamodb_full_access_role_AND_SNS_SUBSCRIBE \
   --handler RefreshPriceForTitle.lambda_handler \
   --runtime nodejs4.3
 
@@ -42,7 +42,7 @@ aws lambda create-function \
   --region $AWS_REGION \
   --function-name RefreshPriceForAllAuthors \
   --zip-file fileb://$TARGET_DIR/RefreshPriceForAllTitles.zip \
-  --role $basic_execution_role \
+  --role $basic_execution_role_AND_SNS_PUBLISH \
   --handler RefreshPriceForAllAuthors.lambda_handler \
   --runtime nodejs4.3
 
@@ -51,6 +51,6 @@ aws lambda create-function \
   --region $AWS_REGION \
   --function-name RefreshTitlesForAuthor \
   --zip-file fileb://$TARGET_DIR/RefreshTitlesForAuthor.zip \
-  --role $execution_with_dynamodb_full_access_role \
+  --role $execution_with_dynamodb_full_access_role_AND_SNS_SUBSCRIBE \
   --handler RefreshTitlesForAuthor.lambda_handler \
   --runtime nodejs4.3
