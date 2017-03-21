@@ -1,3 +1,6 @@
+## Problems
+- [] duplication between `deploy.env` and `aws_config/`
+
 ## Easier
 - [] Automate deployment of updates to existing lambda functions
 
