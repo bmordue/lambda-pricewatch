@@ -8,9 +8,9 @@ TARGET_DIR=$PROJECT_DIR/target
 DEPLOY_DIR=$PROJECT_DIR/deploy
 ORIGINAL_DIR=$(pwd)
 
-echo 'Deploying lambda functions to AWS'
+echo 'Creating AWS Lambda functions'
 set -x
-echo 'Deploy ProcessDBStreamForAuthorsTableUpdate'
+echo 'Create ProcessDBStreamForAuthorsTableUpdate'
 aws lambda create-function \
   --region $AWS_REGION \
   --function-name ProcessDBStreamForAuthorsTableUpdate \
@@ -19,7 +19,16 @@ aws lambda create-function \
   --handler ProcessDBStreamForAuthorsTableUpdate.lambda_handler \
   --runtime nodejs4.3
 
-echo 'Deploy RefreshPriceForAllTitles'
+echo 'Create ProcessDBStreamForTitlesTableUpdate'
+aws lambda create-function \
+  --region $AWS_REGION \
+  --function-name ProcessDBStreamForTitlesTableUpdate \
+  --zip-file fileb://$TARGET_DIR/ProcessDBStreamForTitlesTableUpdate.zip \
+  --role $execution_with_dynamodb_stream_role_AND_SNS_PUBLISH \
+  --handler ProcessDBStreamForTitlesTableUpdate.lambda_handler \
+  --runtime nodejs4.3
+
+echo 'Create RefreshPriceForAllTitles'
 aws lambda create-function \
   --region $AWS_REGION \
   --function-name RefreshPriceForAllTitles \
@@ -28,7 +37,7 @@ aws lambda create-function \
   --handler RefreshPriceForAllTitles.lambda_handler \
   --runtime nodejs4.3
 
-echo 'Deploy RefreshPriceForTitle'
+echo 'Create RefreshPriceForTitle'
 aws lambda create-function \
   --region $AWS_REGION \
   --function-name RefreshPriceForTitle \
@@ -37,7 +46,7 @@ aws lambda create-function \
   --handler RefreshPriceForTitle.lambda_handler \
   --runtime nodejs4.3
 
-echo 'Deploy RefreshPriceForAllAuthors'
+echo 'Create RefreshPriceForAllAuthors'
 aws lambda create-function \
   --region $AWS_REGION \
   --function-name RefreshPriceForAllAuthors \
@@ -46,7 +55,7 @@ aws lambda create-function \
   --handler RefreshPriceForAllAuthors.lambda_handler \
   --runtime nodejs4.3
 
-echo 'Deploy RefreshTitlesForAuthor'
+echo 'Create RefreshTitlesForAuthor'
 aws lambda create-function \
   --region $AWS_REGION \
   --function-name RefreshTitlesForAuthor \

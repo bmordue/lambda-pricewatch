@@ -20,6 +20,11 @@ aws lambda update-function-code \
   --function-name ProcessDBStreamForAuthorsTableUpdate \
   --zip-file fileb://$TARGET_DIR/ProcessDBStreamForAuthorsTableUpdate.zip \
 
+echo 'Deploy ProcessDBStreamForTitlesTableUpdate'
+aws lambda update-function-code \
+  --function-name ProcessDBStreamForTitlesTableUpdate \
+  --zip-file fileb://$TARGET_DIR/ProcessDBStreamForTitlesTableUpdate.zip \
+
 echo 'Deploy RefreshPriceForAllTitles'
 aws lambda update-function-code \
   --function-name RefreshPriceForAllTitles \
