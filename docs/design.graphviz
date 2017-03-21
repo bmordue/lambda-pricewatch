@@ -9,12 +9,16 @@ digraph {
   h[label="ExternalUpdate"];
   i[label="RefreshPriceForAllTitles.js"];
   j[label="RefreshTitlesForAllAuthors.js"];
+  k[label="Author added SNS topic"];
+  l[label="Title added SNS topic"];
 
   f -> a[label="update triggers lambda"];
-  a -> c[label="lambda triggers lambda"];
+  a -> k[label="lambda posts to topic"];
+  k -> c[label="topic publish triggers lambda"]
   c -> g[label="lambda updates table"];
   g -> e[label="update triggers lambda"];
-  e -> b[label="lambda triggers lambda"];
+  e -> l[label="lambda posts to topic"];
+  l -> b[label="topic publish triggers lambda"];
   b -> g[label="lambda updates table"];
   d -> i[label="schedule triggers lambda"];
   d -> j[label="schedule triggers lambda"];
