@@ -24,5 +24,5 @@ exports.lambda_handler = function(event, context, callback) {
       console.log("Skipping record -- record.eventName: " + record.eventName);
     }
   });
-  callback(null, message);
+  callback(null, "done");
 };
