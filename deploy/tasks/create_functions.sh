@@ -46,13 +46,13 @@ aws lambda create-function \
   --handler RefreshPriceForTitle.lambda_handler \
   --runtime nodejs4.3
 
-echo 'Create RefreshPriceForAllAuthors'
+echo 'Create RefreshTitlesForAllAuthors'
 aws lambda create-function \
   --region $AWS_REGION \
-  --function-name RefreshPriceForAllAuthors \
-  --zip-file fileb://$TARGET_DIR/RefreshPriceForAllTitles.zip \
+  --function-name RefreshTitlesForAllAuthors \
+  --zip-file fileb://$TARGET_DIR/RefreshTitlesForAllAuthors.zip \
   --role $basic_execution_role_AND_SNS_PUBLISH \
-  --handler RefreshPriceForAllAuthors.lambda_handler \
+  --handler RefreshTitlesForAllAuthors.lambda_handler \
   --runtime nodejs4.3
 
 echo 'Create RefreshTitlesForAuthor'

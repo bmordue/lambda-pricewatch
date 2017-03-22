@@ -35,10 +35,10 @@ aws lambda update-function-code \
   --function-name RefreshPriceForTitle \
   --zip-file fileb://$TARGET_DIR/RefreshPriceForTitle.zip \
 
-echo 'Deploy RefreshPriceForAllAuthors'
+echo 'Deploy RefreshTitlesForAllAuthors'
 aws lambda update-function-code \
-  --function-name RefreshPriceForAllAuthors \
-  --zip-file fileb://$TARGET_DIR/RefreshPriceForAllTitles.zip \
+  --function-name RefreshTitlesForAllAuthors \
+  --zip-file fileb://$TARGET_DIR/RefreshTitlesForAllAuthors.zip \
 
 echo 'Deploy RefreshTitlesForAuthor'
 aws lambda update-function-code \
