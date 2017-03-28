@@ -11,7 +11,7 @@ exports.lambda_handler = function(event, context, callback) {
         return callback(e, "Error extracting author name from update stream");
       }
       sns.publish({
-          TopicArn: "arn:aws:sns:eu-west-1:285774518219:author_added",
+          TopicArn: process.env.AUTHOR_REFRESH_TOPIC_ARN,
           Message: author
       }, function(err, data) {
         if (err) {
