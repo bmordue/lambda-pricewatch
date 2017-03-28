@@ -8,10 +8,7 @@ resource "aws_lambda_function" "ProcessDBStreamForTitlesTableUpdate" {
 
   environment {
     variables = {
-      AMZN_SERVICE_HOST = "${var.amzn_service_host}"
-      AMZN_ACCESS_KEY_ID = "${var.amzn_access_key_id}"
-      AMZN_ACCESS_KEY_SECRET = "${var.amzn_access_key_secret}"
-      AMZN_ASSOCIATE_TAG = "${var.amzn_associate_tag}"
+      TITLE_REFRESH_TOPIC_ARN = "${aws_sns_topic.title_refresh.arn}"
     }
   }
 }
