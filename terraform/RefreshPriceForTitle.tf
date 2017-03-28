@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "RefreshPriceForTitle" {
   filename         = "../target/RefreshPriceForTitle.zip"
   function_name    = "RefreshPriceForTitle"
-  role             = "${aws_iam_role.lambda-basic-execution.arn}"
+  role             = "${aws_iam_role.lambda-with-full-dynamodb.arn}"
   handler          = "exports.lambda_handler"
   runtime          = "${var.node_runtime}"
   source_code_hash = "${base64sha256(file("../target/RefreshPriceForTitle.zip"))}"
