@@ -1,11 +1,11 @@
 resource "aws_iam_role" "lambda-basic-execution" {
-  name = "lambda-basic-execution-role"
-  assume_role_policy = file("lambda_execution_policy.json")
+  name = "lambda-basic-execution"
+  assume_role_policy = "${file("lambda_execution_policy.json")}"
 }
 
 resource "aws_iam_role" "lambda-with-full-sns" {
   name = "lambda-with-full-sns-role"
-  assume_role_policy = file("lambda_execution_policy.json")
+  assume_role_policy = "${file("lambda_execution_policy.json")}"
 }
 
 resource "aws_iam_policy_attachment" "AWSLambdaDynamoDBExecutionRole-attach" {
