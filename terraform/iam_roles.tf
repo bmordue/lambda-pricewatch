@@ -1,20 +1,20 @@
 resource "aws_iam_role" "lambda-basic-execution" {
-  name = "lambda-basic-execution"
+  name_prefix = "${var.project_name}"
   assume_role_policy = "${file("lambda_execution_policy.json")}"
 }
 
 resource "aws_iam_role" "lambda-with-full-sns" {
-  name = "lambda-with-full-sns-role"
+  name_prefix = "${var.project_name}"
   assume_role_policy = "${file("lambda_execution_policy.json")}"
 }
 
 resource "aws_iam_role" "lambda-with-full-sns-and-dynamodb" {
-  name = "lambda-with-full-sns-role"
+  name_prefix = "${var.project_name}"
   assume_role_policy = "${file("lambda_execution_policy.json")}"
 }
 
 resource "aws_iam_role" "lambda-with-full-dynamodb" {
-  name = "lambda-with-full-sns-role"
+  name_prefix = "${var.project_name}"
   assume_role_policy = "${file("lambda_execution_policy.json")}"
 }
 

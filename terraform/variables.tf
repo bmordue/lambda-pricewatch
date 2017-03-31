@@ -7,6 +7,9 @@ variable "region" {
 variable "node_runtime" {
   default = "nodejs6.10"
 }
+variable "project_name" {
+  default = "lambda-pricewatch"
+}
 variable "amzn_service_host" {}
 variable "amzn_access_key_id" {}
 variable "amzn_access_key_secret" {}
