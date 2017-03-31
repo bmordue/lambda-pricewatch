@@ -1,9 +1,1 @@
-## Problems
-- [] duplication between `deploy.env` and `aws_config/`
-
-## Easier
-- [] Automate deployment of updates to existing lambda functions
-
-## Harder
-- [] Automate AWS setup from scratch, including Dynamo DB tables, IAM roles, monitoring...
-- [] Use declarative setup and deployment, eg ansible
+- [] Continuous integration
