@@ -13,3 +13,8 @@ resource "aws_lambda_function" "RequestTitlesRefreshForAllAuthors" {
     }
   }
 }
+
+resource "aws_cloudwatch_event_target" "monthly_title_refresh" {
+  rule      = "${aws_cloudwatch_event_rule.monthly.name}"
+  arn       = "${aws_lambda_function.RequestTitlesRefreshForAllAuthors.arn}"
+}

@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "RefreshTitlesForAuthor" {
   filename         = "../target/RefreshTitlesForAuthor.zip"
   function_name    = "RefreshTitlesForAuthor"
-  role             = "${aws_iam_role.lambda-with-full-dynamodb.arn}"
+  role             = "${aws_iam_role.lambda-with-full-sns-and-dynamodb.arn}"
   handler          = "exports.lambda_handler"
   runtime          = "${var.node_runtime}"
   source_code_hash = "${base64sha256(file("../target/RefreshTitlesForAuthor.zip"))}"
@@ -12,6 +12,13 @@ resource "aws_lambda_function" "RefreshTitlesForAuthor" {
       AMZN_ACCESS_KEY_ID = "${var.amzn_access_key_id}"
       AMZN_ACCESS_KEY_SECRET = "${var.amzn_access_key_secret}"
       AMZN_ASSOCIATE_TAG = "${var.amzn_associate_tag}"
+      TITLES_TABLE_NAME = "${aws_dynamodb_table.pricewatch_titles.id}"
     }
   }
+}
+
+resource "aws_sns_topic_subscription" "titles_refresh_for_author" {
+  topic_arn = "${aws_sns_topic.author_refresh.arn}"
+  protocol  = "lambda"
+  endpoint  = "${aws_lambda_function.RefreshTitlesForAuthor.arn}"
 }

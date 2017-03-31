@@ -13,3 +13,8 @@ resource "aws_lambda_function" "RequestPriceRefreshForAllTitles" {
     }
   }
 }
+
+resource "aws_cloudwatch_event_target" "daily_price_refresh" {
+  rule      = "${aws_cloudwatch_event_rule.daily.name}"
+  arn       = "${aws_lambda_function.RequestPriceRefreshForAllTitles.arn}"
+}
