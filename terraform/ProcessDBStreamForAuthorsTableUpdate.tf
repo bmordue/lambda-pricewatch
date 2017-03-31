@@ -16,5 +16,5 @@ resource "aws_lambda_function" "ProcessDBStreamForAuthorsTableUpdate" {
 resource "aws_lambda_event_source_mapping" "authors_event_source_mapping" {
   event_source_arn  = "${aws_dynamodb_table.pricewatch_authors.stream_arn}"
   function_name     = "${aws_lambda_function.ProcessDBStreamForAuthorsTableUpdate.arn}"
-  starting_position = "LATEST"
+  starting_position = "TRIM_HORIZON"
 }

@@ -21,7 +21,10 @@ resource "aws_iam_role" "lambda-with-full-dynamodb" {
 
 resource "aws_iam_policy_attachment" "AWSLambdaDynamoDBExecutionRole-attach" {
   name       = "AWSLambdaDynamoDBExecutionRole-attachment"
-  roles      = ["${aws_iam_role.lambda-basic-execution.name}"]
+  roles      = ["${aws_iam_role.lambda-basic-execution.name}",
+                "${aws_iam_role.lambda-with-full-sns.name}",
+                "${aws_iam_role.lambda-with-full-dynamodb.name}",
+                "${aws_iam_role.lambda-with-full-sns-and-dynamodb.name}"]
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaDynamoDBExecutionRole"
 }
 
