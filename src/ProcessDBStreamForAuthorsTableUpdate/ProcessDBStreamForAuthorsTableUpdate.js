@@ -6,7 +6,7 @@ exports.lambda_handler = function(event, context, callback) {
   event.Records.forEach(function(record) {
     if (record.eventName == "INSERT") {
       try {
-        var author = record.dynamodb.NewImage.name.S;
+        var author = record.dynamodb.NewImage.AuthorName.S;
       } catch (e) {
         return callback(e, "Error extracting author name from update stream");
       }
