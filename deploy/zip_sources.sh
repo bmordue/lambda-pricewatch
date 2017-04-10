@@ -2,7 +2,7 @@
 
 set -e
 
-PROJECT_DIR="$(dirname "$(realpath $0)")"/../..
+PROJECT_DIR="$(dirname "$(realpath $0)")"/..
 SRC_DIR=$PROJECT_DIR/src
 TARGET_DIR=$PROJECT_DIR/target
 
