@@ -1,1 +1,2 @@
 - [] Continuous integration
+- [] Limit roles to only what is required

@@ -1,7 +1,7 @@
 source ./test.env
 
 mkdir -p tmp
-for f in $(ls ../src/*.js)
+for f in $(find ../src/ -name '*js')
 do
   filename=${f##*/}
   function_name=${filename%.js}
