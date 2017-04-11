@@ -2,7 +2,7 @@ resource "aws_lambda_function" "RequestPriceRefreshForAllTitles" {
   filename         = "../target/RequestPriceRefreshForAllTitles.zip"
   function_name    = "RequestPriceRefreshForAllTitles"
   role             = "${aws_iam_role.lambda-with-full-sns-and-dynamodb.arn}"
-  handler          = "exports.lambda_handler"
+  handler          = "RequestPriceRefreshForAllTitles.lambda_handler"
   runtime          = "${var.node_runtime}"
   source_code_hash = "${base64sha256(file("../target/RequestPriceRefreshForAllTitles.zip"))}"
 

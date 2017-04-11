@@ -2,7 +2,7 @@ resource "aws_lambda_function" "RequestTitlesRefreshForAllAuthors" {
   filename         = "../target/RequestTitlesRefreshForAllAuthors.zip"
   function_name    = "RequestTitlesRefreshForAllAuthors"
   role             = "${aws_iam_role.lambda-with-full-sns-and-dynamodb.arn}"
-  handler          = "exports.lambda_handler"
+  handler          = "RequestTitlesRefreshForAllAuthors.lambda_handler"
   runtime          = "${var.node_runtime}"
   source_code_hash = "${base64sha256(file("../target/RequestTitlesRefreshForAllAuthors.zip"))}"
 
