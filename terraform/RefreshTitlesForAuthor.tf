@@ -22,3 +22,12 @@ resource "aws_sns_topic_subscription" "titles_refresh_for_author" {
   protocol  = "lambda"
   endpoint  = "${aws_lambda_function.RefreshTitlesForAuthor.arn}"
 }
+
+resource "aws_lambda_permission" "titles_refresh_for_author_with_sns" {
+  statement_id  = "AllowExecutionFromSNS"
+  action        = "lambda:InvokeFunction"
+  function_name = "${aws_lambda_function.RefreshTitlesForAuthor.arn}"
+  principal     = "sns.amazonaws.com"
+  source_arn    = "${aws_sns_topic.author_refresh.arn}"
+}
+

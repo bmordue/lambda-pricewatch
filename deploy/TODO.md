@@ -1,2 +1,3 @@
+- [] KMS for secrets
 - [] Continuous integration
 - [] Limit roles to only what is required

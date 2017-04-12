@@ -18,3 +18,11 @@ resource "aws_cloudwatch_event_target" "daily_price_refresh" {
   rule      = "${aws_cloudwatch_event_rule.daily.name}"
   arn       = "${aws_lambda_function.RequestPriceRefreshForAllTitles.arn}"
 }
+
+resource "aws_lambda_permission" "daily_price_refresh_allow_cloudwatch" {
+  statement_id   = "AllowExecutionFromCloudWatch"
+  action         = "lambda:InvokeFunction"
+  function_name  = "${aws_lambda_function.RequestPriceRefreshForAllTitles.arn}"
+  principal      = "events.amazonaws.com"
+  source_arn     = "${aws_cloudwatch_event_rule.daily.arn}"
+}

@@ -22,3 +22,12 @@ resource "aws_sns_topic_subscription" "price_refresh_for_title" {
   protocol  = "lambda"
   endpoint  = "${aws_lambda_function.RefreshPriceForTitle.arn}"
 }
+
+resource "aws_lambda_permission" "price_refresh_for_title_with_sns" {
+  statement_id  = "AllowExecutionFromSNS"
+  action        = "lambda:InvokeFunction"
+  function_name = "${aws_lambda_function.RefreshPriceForTitle.arn}"
+  principal     = "sns.amazonaws.com"
+  source_arn    = "${aws_sns_topic.title_refresh.arn}"
+}
+

@@ -12,7 +12,7 @@ cd $SRC_DIR
 for d in $(ls -1)
 do
   cd $d
-  zip -u $TARGET_DIR/$d.zip *.js
+  zip $TARGET_DIR/$d.zip *.js
   if [ -e 'package.json' ]
   then
     npm install

@@ -33,6 +33,7 @@ resource "aws_iam_policy_attachment" "AmazonSNSFullAccess-attach" {
   roles      = ["${aws_iam_role.lambda-basic-execution.name}",
                 "${aws_iam_role.lambda-with-full-sns.name}",
                 "${aws_iam_role.lambda-with-full-sns-and-dynamodb.name}"]
+  groups     = ["deployers"] 
   policy_arn = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
 }
 
