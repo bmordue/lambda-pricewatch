@@ -1,4 +1,5 @@
 
+var aws = require("aws-lib");
 
 exports.lambda_handler = function(event, context, callback) {
     var keyId = process.env.AMZN_ACCESS_KEY_ID;
