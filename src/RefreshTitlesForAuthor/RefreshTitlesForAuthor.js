@@ -29,7 +29,7 @@ function handleNotification(record, callback) {
     var params = {
         Author: authorName,
         SearchIndex: "KindleStore",
-        ResponseGroup: "ItemIds"
+        ResponseGroup: "ItemIds,ItemAttributes"
     };
     getSearchResultsPage(params, 1, function(err, resultsPage) {
         if (err) {
@@ -37,7 +37,7 @@ function handleNotification(record, callback) {
             return callback(err);
         }
         console.log(util.format("Got %s results for %s", resultsPage.Items.TotalResults, authorName));
-        
+
         var pages = pageNumbersAsList(resultsPage.Items.TotalPages);
 
         handleResultsPage(resultsPage, function(err) {
@@ -79,6 +79,13 @@ function handleResultsPage(resultsPage, callback) {
 }
 
 function prepareDynamoParams(item) {
+    console.log(JSON.stringify(item, null, 2));
+
+    var authorList = item.ItemAttributes.Author;
+    if (authorList.constructor !== Array ) {
+        authorList = [authorList];
+    }
+
     var params = {
         TableName: process.env.TITLES_TABLE_NAME,
         ConditionExpression: "attribute_not_exists(ASIN)",
@@ -89,18 +96,14 @@ function prepareDynamoParams(item) {
             "DetailPageURL": {
                 S: item.DetailPageURL
             },
-            "ItemAttributes": {
-                M: {
-                    "Author": {
-                        S: item.ItemAttributes.Author
-                    },
-                    "Manufacturer": {
-                        S: item.ItemAttributes.Manufacturer
-                    },
-                    "Title": {
-                        S: item.ItemAttributes.Title
-                    }
-                }
+            "Author": {
+                SS: authorList
+            },
+            "Publisher": {
+                S: item.ItemAttributes.Manufacturer
+            },
+            "Title": {
+                S: item.ItemAttributes.Title
             }
         }
     };
