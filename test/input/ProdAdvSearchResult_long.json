@@ -1,0 +1,401 @@
+{
+  "@": {
+    "xmlns": "http://webservices.amazon.com/AWSECommerceService/2011-08-01"
+  },
+  "OperationRequest": {
+    "RequestId": "b990d76a-cba9-4f2a-acd1-0237274bb591",
+    "Arguments": {
+      "Argument": [
+        {
+          "@": {
+            "Name": "Author",
+            "Value": "Greg Bear"
+          }
+        },
+        {
+          "@": {
+            "Name": "ItemPage",
+            "Value": "1"
+          }
+        },
+        {
+          "@": {
+            "Name": "SearchIndex",
+            "Value": "KindleStore"
+          }
+        },
+        {
+          "@": {
+            "Name": "ResponseGroup",
+            "Value": "Small"
+          }
+        },
+        {
+          "@": {
+            "Name": "Operation",
+            "Value": "ItemSearch"
+          }
+        },
+        {
+          "@": {
+            "Name": "Service",
+            "Value": "AWSECommerceService"
+          }
+        },
+        {
+          "@": {
+            "Name": "Version",
+            "Value": "2009-10-01"
+          }
+        },
+        {
+          "@": {
+            "Name": "AssociateTag",
+            "Value": "scotapcom-21"
+          }
+        },
+        {
+          "@": {
+            "Name": "Region",
+            "Value": "US"
+          }
+        },
+        {
+          "@": {
+            "Name": "Timestamp",
+            "Value": "2017-04-13T20:54:14.903Z"
+          }
+        },
+        {
+          "@": {
+            "Name": "AWSAccessKeyId",
+            "Value": "AKIAJ55ROCVVUZ4A6GGA"
+          }
+        },
+        {
+          "@": {
+            "Name": "Signature",
+            "Value": "/H6+ErYcroLRjQfRNdlfbbf09oc6Mqkn19HaLSAKgPE="
+          }
+        }
+      ]
+    },
+    "RequestProcessingTime": "0.2095288770000000"
+  },
+  "Items": {
+    "Request": {
+      "IsValid": "True",
+      "ItemSearchRequest": {
+        "Author": "Greg Bear",
+        "ItemPage": "1",
+        "ResponseGroup": "Small",
+        "SearchIndex": "KindleStore"
+      }
+    },
+    "TotalResults": "95",
+    "TotalPages": "10",
+    "MoreSearchResultsUrl": "https://www.amazon.co.uk/gp/search?linkCode=xm2&SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&keywords=Greg%20Bear&tag=scotapcom-21&creative=12734&url=search-alias%3Ddigital-text&camp=2025",
+    "Item": [
+      {
+        "ASIN": "B01GEJVYEG",
+        "DetailPageURL": "https://www.amazon.co.uk/Take-Back-Sky-Dogs-Trilogy-ebook/dp/B01GEJVYEG?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B01GEJVYEG",
+        "ItemLinks": {
+          "ItemLink": [
+            {
+              "Description": "Add To Wishlist",
+              "URL": "https://www.amazon.co.uk/gp/registry/wishlist/add-item.html?asin.0=B01GEJVYEG&SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B01GEJVYEG"
+            },
+            {
+              "Description": "Tell A Friend",
+              "URL": "https://www.amazon.co.uk/gp/pdp/taf/B01GEJVYEG?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B01GEJVYEG"
+            },
+            {
+              "Description": "All Customer Reviews",
+              "URL": "https://www.amazon.co.uk/review/product/B01GEJVYEG?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B01GEJVYEG"
+            },
+            {
+              "Description": "All Offers",
+              "URL": "https://www.amazon.co.uk/gp/offer-listing/B01GEJVYEG?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B01GEJVYEG"
+            }
+          ]
+        },
+        "ItemAttributes": {
+          "Author": "Greg Bear",
+          "Manufacturer": "Gollancz",
+          "ProductGroup": "eBooks",
+          "Title": "Take Back the Sky (War Dogs Trilogy 3)"
+        }
+      },
+      {
+        "ASIN": "B01LH1WQZC",
+        "DetailPageURL": "https://www.amazon.co.uk/Forge-God-S-F-MASTERWORKS-ebook/dp/B01LH1WQZC?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B01LH1WQZC",
+        "ItemLinks": {
+          "ItemLink": [
+            {
+              "Description": "Add To Wishlist",
+              "URL": "https://www.amazon.co.uk/gp/registry/wishlist/add-item.html?asin.0=B01LH1WQZC&SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B01LH1WQZC"
+            },
+            {
+              "Description": "Tell A Friend",
+              "URL": "https://www.amazon.co.uk/gp/pdp/taf/B01LH1WQZC?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B01LH1WQZC"
+            },
+            {
+              "Description": "All Customer Reviews",
+              "URL": "https://www.amazon.co.uk/review/product/B01LH1WQZC?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B01LH1WQZC"
+            },
+            {
+              "Description": "All Offers",
+              "URL": "https://www.amazon.co.uk/gp/offer-listing/B01LH1WQZC?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B01LH1WQZC"
+            }
+          ]
+        },
+        "ItemAttributes": {
+          "Author": "Greg Bear",
+          "Manufacturer": "Gateway",
+          "ProductGroup": "eBooks",
+          "Title": "The Forge Of God (S.F. MASTERWORKS)"
+        }
+      },
+      {
+        "ASIN": "B00K5UFHSA",
+        "DetailPageURL": "https://www.amazon.co.uk/War-Dogs-Trilogy-Book-ebook/dp/B00K5UFHSA?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B00K5UFHSA",
+        "ItemLinks": {
+          "ItemLink": [
+            {
+              "Description": "Add To Wishlist",
+              "URL": "https://www.amazon.co.uk/gp/registry/wishlist/add-item.html?asin.0=B00K5UFHSA&SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00K5UFHSA"
+            },
+            {
+              "Description": "Tell A Friend",
+              "URL": "https://www.amazon.co.uk/gp/pdp/taf/B00K5UFHSA?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00K5UFHSA"
+            },
+            {
+              "Description": "All Customer Reviews",
+              "URL": "https://www.amazon.co.uk/review/product/B00K5UFHSA?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00K5UFHSA"
+            },
+            {
+              "Description": "All Offers",
+              "URL": "https://www.amazon.co.uk/gp/offer-listing/B00K5UFHSA?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00K5UFHSA"
+            }
+          ]
+        },
+        "ItemAttributes": {
+          "Author": "Greg Bear",
+          "Manufacturer": "Gollancz",
+          "ProductGroup": "eBooks",
+          "Title": "War Dogs (War Dogs Trilogy Book 1)"
+        }
+      },
+      {
+        "ASIN": "B00WERXF3G",
+        "DetailPageURL": "https://www.amazon.co.uk/Killing-Titan-Dogs-Trilogy-Book-ebook/dp/B00WERXF3G?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B00WERXF3G",
+        "ItemLinks": {
+          "ItemLink": [
+            {
+              "Description": "Add To Wishlist",
+              "URL": "https://www.amazon.co.uk/gp/registry/wishlist/add-item.html?asin.0=B00WERXF3G&SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00WERXF3G"
+            },
+            {
+              "Description": "Tell A Friend",
+              "URL": "https://www.amazon.co.uk/gp/pdp/taf/B00WERXF3G?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00WERXF3G"
+            },
+            {
+              "Description": "All Customer Reviews",
+              "URL": "https://www.amazon.co.uk/review/product/B00WERXF3G?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00WERXF3G"
+            },
+            {
+              "Description": "All Offers",
+              "URL": "https://www.amazon.co.uk/gp/offer-listing/B00WERXF3G?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00WERXF3G"
+            }
+          ]
+        },
+        "ItemAttributes": {
+          "Author": "Greg Bear",
+          "Manufacturer": "Gollancz",
+          "ProductGroup": "eBooks",
+          "Title": "Killing Titan (War Dogs Trilogy Book 2)"
+        }
+      },
+      {
+        "ASIN": "B00J3EU5RC",
+        "DetailPageURL": "https://www.amazon.co.uk/Eon-Greg-Bear-ebook/dp/B00J3EU5RC?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B00J3EU5RC",
+        "ItemLinks": {
+          "ItemLink": [
+            {
+              "Description": "Add To Wishlist",
+              "URL": "https://www.amazon.co.uk/gp/registry/wishlist/add-item.html?asin.0=B00J3EU5RC&SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00J3EU5RC"
+            },
+            {
+              "Description": "Tell A Friend",
+              "URL": "https://www.amazon.co.uk/gp/pdp/taf/B00J3EU5RC?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00J3EU5RC"
+            },
+            {
+              "Description": "All Customer Reviews",
+              "URL": "https://www.amazon.co.uk/review/product/B00J3EU5RC?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00J3EU5RC"
+            },
+            {
+              "Description": "All Offers",
+              "URL": "https://www.amazon.co.uk/gp/offer-listing/B00J3EU5RC?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00J3EU5RC"
+            }
+          ]
+        },
+        "ItemAttributes": {
+          "Author": "Greg Bear",
+          "Manufacturer": "Open Road Media Sci-Fi & Fantasy",
+          "ProductGroup": "eBooks",
+          "Title": "Eon"
+        }
+      },
+      {
+        "ASIN": "B006O9OJBW",
+        "DetailPageURL": "https://www.amazon.co.uk/Blood-Music-S-F-MASTERWORKS-Greg-ebook/dp/B006O9OJBW?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B006O9OJBW",
+        "ItemLinks": {
+          "ItemLink": [
+            {
+              "Description": "Add To Wishlist",
+              "URL": "https://www.amazon.co.uk/gp/registry/wishlist/add-item.html?asin.0=B006O9OJBW&SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B006O9OJBW"
+            },
+            {
+              "Description": "Tell A Friend",
+              "URL": "https://www.amazon.co.uk/gp/pdp/taf/B006O9OJBW?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B006O9OJBW"
+            },
+            {
+              "Description": "All Customer Reviews",
+              "URL": "https://www.amazon.co.uk/review/product/B006O9OJBW?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B006O9OJBW"
+            },
+            {
+              "Description": "All Offers",
+              "URL": "https://www.amazon.co.uk/gp/offer-listing/B006O9OJBW?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B006O9OJBW"
+            }
+          ]
+        },
+        "ItemAttributes": {
+          "Author": "Greg Bear",
+          "Manufacturer": "Gateway",
+          "ProductGroup": "eBooks",
+          "Title": "Blood Music (S.F. MASTERWORKS)"
+        }
+      },
+      {
+        "ASIN": "B004P8ITDS",
+        "DetailPageURL": "https://www.amazon.co.uk/Hull-Zero-Three-Greg-Bear-ebook/dp/B004P8ITDS?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B004P8ITDS",
+        "ItemLinks": {
+          "ItemLink": [
+            {
+              "Description": "Add To Wishlist",
+              "URL": "https://www.amazon.co.uk/gp/registry/wishlist/add-item.html?asin.0=B004P8ITDS&SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B004P8ITDS"
+            },
+            {
+              "Description": "Tell A Friend",
+              "URL": "https://www.amazon.co.uk/gp/pdp/taf/B004P8ITDS?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B004P8ITDS"
+            },
+            {
+              "Description": "All Customer Reviews",
+              "URL": "https://www.amazon.co.uk/review/product/B004P8ITDS?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B004P8ITDS"
+            },
+            {
+              "Description": "All Offers",
+              "URL": "https://www.amazon.co.uk/gp/offer-listing/B004P8ITDS?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B004P8ITDS"
+            }
+          ]
+        },
+        "ItemAttributes": {
+          "Author": "Greg Bear",
+          "Manufacturer": "Gollancz",
+          "ProductGroup": "eBooks",
+          "Title": "Hull Zero Three"
+        }
+      },
+      {
+        "ASIN": "B008BJUSIQ",
+        "DetailPageURL": "https://www.amazon.co.uk/Anvil-Stars-Forge-God-Book-ebook/dp/B008BJUSIQ?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B008BJUSIQ",
+        "ItemLinks": {
+          "ItemLink": [
+            {
+              "Description": "Add To Wishlist",
+              "URL": "https://www.amazon.co.uk/gp/registry/wishlist/add-item.html?asin.0=B008BJUSIQ&SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B008BJUSIQ"
+            },
+            {
+              "Description": "Tell A Friend",
+              "URL": "https://www.amazon.co.uk/gp/pdp/taf/B008BJUSIQ?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B008BJUSIQ"
+            },
+            {
+              "Description": "All Customer Reviews",
+              "URL": "https://www.amazon.co.uk/review/product/B008BJUSIQ?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B008BJUSIQ"
+            },
+            {
+              "Description": "All Offers",
+              "URL": "https://www.amazon.co.uk/gp/offer-listing/B008BJUSIQ?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B008BJUSIQ"
+            }
+          ]
+        },
+        "ItemAttributes": {
+          "Author": "Greg Bear",
+          "Manufacturer": "Gateway",
+          "ProductGroup": "eBooks",
+          "Title": "Anvil of Stars: The Forge Of God Book 2"
+        }
+      },
+      {
+        "ASIN": "B000FC1POS",
+        "DetailPageURL": "https://www.amazon.co.uk/Foundation-Chaos-Second-Trilogy-Book-ebook/dp/B000FC1POS?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B000FC1POS",
+        "ItemLinks": {
+          "ItemLink": [
+            {
+              "Description": "Add To Wishlist",
+              "URL": "https://www.amazon.co.uk/gp/registry/wishlist/add-item.html?asin.0=B000FC1POS&SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B000FC1POS"
+            },
+            {
+              "Description": "Tell A Friend",
+              "URL": "https://www.amazon.co.uk/gp/pdp/taf/B000FC1POS?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B000FC1POS"
+            },
+            {
+              "Description": "All Customer Reviews",
+              "URL": "https://www.amazon.co.uk/review/product/B000FC1POS?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B000FC1POS"
+            },
+            {
+              "Description": "All Offers",
+              "URL": "https://www.amazon.co.uk/gp/offer-listing/B000FC1POS?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B000FC1POS"
+            }
+          ]
+        },
+        "ItemAttributes": {
+          "Author": "Greg Bear",
+          "Manufacturer": "HarperCollins e-books",
+          "ProductGroup": "eBooks",
+          "Title": "Foundation and Chaos: The Second Foundation Trilogy (Second Foundation Trilogy Series Book 2)"
+        }
+      },
+      {
+        "ASIN": "B00B9CPY0O",
+        "DetailPageURL": "https://www.amazon.co.uk/Halo-Silentium-Greg-Bear-ebook/dp/B00B9CPY0O?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B00B9CPY0O",
+        "ItemLinks": {
+          "ItemLink": [
+            {
+              "Description": "Add To Wishlist",
+              "URL": "https://www.amazon.co.uk/gp/registry/wishlist/add-item.html?asin.0=B00B9CPY0O&SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00B9CPY0O"
+            },
+            {
+              "Description": "Tell A Friend",
+              "URL": "https://www.amazon.co.uk/gp/pdp/taf/B00B9CPY0O?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00B9CPY0O"
+            },
+            {
+              "Description": "All Customer Reviews",
+              "URL": "https://www.amazon.co.uk/review/product/B00B9CPY0O?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00B9CPY0O"
+            },
+            {
+              "Description": "All Offers",
+              "URL": "https://www.amazon.co.uk/gp/offer-listing/B00B9CPY0O?SubscriptionId=AKIAJ55ROCVVUZ4A6GGA&tag=scotapcom-21&linkCode=xm2&camp=2025&creative=12734&creativeASIN=B00B9CPY0O"
+            }
+          ]
+        },
+        "ItemAttributes": {
+          "Author": "Greg Bear",
+          "Manufacturer": "Tor",
+          "ProductGroup": "eBooks",
+          "Title": "Halo: Silentium"
+        }
+      }
+    ]
+  }
+}

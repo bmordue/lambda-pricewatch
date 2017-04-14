@@ -1,0 +1,22 @@
+{
+  "Records": [
+    {
+      "EventSource": "aws:sns",
+      "EventVersion": "1.0",
+      "EventSubscriptionArn": "arn:aws:sns:eu-west-2:285774518219:author_refresh_topic:de4cabd2-ad71-43cd-9f3a-e117d8234da5",
+      "Sns": {
+        "Type": "Notification",
+        "MessageId": "5cbd5774-c69a-5657-bbaa-061e666e2fb0",
+        "TopicArn": "arn:aws:sns:eu-west-2:285774518219:author_refresh_topic",
+        "Subject": null,
+        "Message": "William Gibson",
+        "Timestamp": "2017-04-14T10:04:36.918Z",
+        "SignatureVersion": "1",
+        "Signature": "awBPJWBlGgHydnDcY2KkozYKv0jKzIPsC3gAWaKdYxt4tveYKqGrGf/LoCXPTiOcRNy64pj8DdYg5Lpm3VscnTF3f5aj2Asnm1suz6kcuKUXl0nYGLcI6gmdEQYW7IjvwZLJn48BT9JQprNLvKUZfyug3HfwlPvix/T7Pm3FaEhBXPLR05blnbDtMUjXLs38faEIsv2mtXGeYV+A1cscfUmTTnexkLMyASKyBQa5o8VDAnBL4vfa9ct2x047mCfc7AYxrdw8EsVrsCGz7MwCZ0aTxZgw+C4CTTTjR/towjVfGeZQyJmlAKw78MtJ7oCb0+UDAVUTTln/UXNDjZLF8w==",
+        "SigningCertUrl": "https://sns.eu-west-2.amazonaws.com/SimpleNotificationService-b95095beb82e8f6a046b3aafc7f4149a.pem",
+        "UnsubscribeUrl": "https://sns.eu-west-2.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:eu-west-2:285774518219:author_refresh_topic:de4cabd2-ad71-43cd-9f3a-e117d8234da5",
+        "MessageAttributes": {}
+      }
+    }
+  ]
+}
