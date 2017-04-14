@@ -1,9 +1,10 @@
 {
-  "name": "ProcessDBStreamForAuthorsTableUpdate",
+  "name": "ProcessDBStreamForTitlesTableUpdate",
   "version": "1.0.0",
   "description": "",
-  "main": "ProcessDBStreamForAuthorsTableUpdate.js",
+  "main": "ProcessDBStreamForTitlesTableUpdate.js",
   "dependencies": {
+    "async": "^2.3.0",
     "aws-lib": "^0.3.0"
   },
   "devDependencies": {},
