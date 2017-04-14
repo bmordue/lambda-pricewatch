@@ -5,6 +5,7 @@ resource "aws_lambda_function" "RefreshTitlesForAuthor" {
   handler          = "RefreshTitlesForAuthor.lambda_handler"
   runtime          = "${var.node_runtime}"
   source_code_hash = "${base64sha256(file("../target/RefreshTitlesForAuthor.zip"))}"
+  timeout          = 60
 
   environment {
     variables = {

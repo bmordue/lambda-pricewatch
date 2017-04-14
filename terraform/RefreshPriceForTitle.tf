@@ -5,6 +5,7 @@ resource "aws_lambda_function" "RefreshPriceForTitle" {
   handler          = "RefreshPriceForTitle.lambda_handler"
   runtime          = "${var.node_runtime}"
   source_code_hash = "${base64sha256(file("../target/RefreshPriceForTitle.zip"))}"
+  timeout          = 60
 
   environment {
     variables = {
