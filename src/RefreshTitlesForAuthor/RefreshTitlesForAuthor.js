@@ -79,6 +79,7 @@ function handleResultsPage(resultsPage, callback) {
 }
 
 function prepareDynamoParams(item) {
+    console.log("About to prepare dynamo params for item");
     console.log(JSON.stringify(item, null, 2));
 
     var authorList = item.ItemAttributes.Author;
@@ -100,13 +101,29 @@ function prepareDynamoParams(item) {
                 SS: authorList
             },
             "Publisher": {
-                S: item.ItemAttributes.Manufacturer
+                S: item.ItemAttributes.Publisher
             },
             "Title": {
                 S: item.ItemAttributes.Title
+            },
+            "ListPrice": {
+                M: {
+                    "Amount": {
+                        N: Number(item.ItemAttributes.ListPrice.Amount)
+                    },
+                    "CurrencyCode": {
+                        S: item.ItemAttributes.ListPrice.CurrencyCode
+                    },
+                    "FormattedPrice": {
+                        S: item.ItemAttributes.ListPrice.FormattedPrice
+                    }
+                }
             }
         }
     };
+
+    console.log("Prepared params for dynamo query");
+    console.log(JSON.stringify(params, null, 2));
     return params;
 }
 
