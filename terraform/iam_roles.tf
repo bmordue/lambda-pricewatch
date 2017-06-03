@@ -42,7 +42,7 @@ resource "aws_iam_policy_attachment" "AmazonSNSFullAccess-attach" {
   roles      = ["${aws_iam_role.lambda-basic-execution.name}",
                 "${aws_iam_role.lambda-with-full-sns.name}",
                 "${aws_iam_role.lambda-with-full-sns-and-dynamodb.name}",
-                "${aws.iam_role.lambda-with-full-sqs-and-sns.name}"]
+                "${aws_iam_role.lambda-with-full-sqs-and-sns.name}"]
   groups     = ["deployers"]
   policy_arn = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
 }
@@ -57,7 +57,7 @@ resource "aws_iam_policy_attachment" "AmazonDynamoDBFullAccess-attach" {
 resource "aws_iam_policy_attachment" "AmazonSQSFullAccess-attach" {
   name       = "AmazonSQSFullAccess-attachment"
   roles      = ["${aws_iam_role.lambda-with-full-sqs.name}",
-                "${aws.iam_role.lambda-with-full-sqs-and-sns.name}"]
+                "${aws_iam_role.lambda-with-full-sqs-and-sns.name}"]
   groups     = ["deployers"]
   policy_arn = "arn:aws:iam::aws:policy/AmazonSQSFullAccess"
 }
