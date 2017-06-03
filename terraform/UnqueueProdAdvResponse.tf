@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "UnqueueProdAdvResponse" {
   filename         = "../target/UnqueueProdAdvResponse.zip"
   function_name    = "UnqueueProdAdvResponse"
-  role             = "${aws_iam_role.lambda-with-full-sqs.arn}"
+  role             = "${aws_iam_role.lambda-with-full-sqs-and-sns.arn}"
   handler          = "UnqueueProdAdvResponse.lambda_handler"
   runtime          = "${var.node_runtime}"
   source_code_hash = "${base64sha256(file("../target/UnqueueProdAdvResponse.zip"))}"

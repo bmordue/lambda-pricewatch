@@ -23,6 +23,11 @@ resource "aws_iam_role" "lambda-with-full-sqs" {
   assume_role_policy = "${file("lambda_execution_policy.json")}"
 }
 
+resource "aws_iam_role" "lambda-with-full-sqs-and-sns" {
+  name = "lambda-with-full-sqs-and-sns"
+  assume_role_policy = "${file("lambda_execution_policy.json")}"
+}
+
 resource "aws_iam_policy_attachment" "AWSLambdaDynamoDBExecutionRole-attach" {
   name       = "AWSLambdaDynamoDBExecutionRole-attachment"
   roles      = ["${aws_iam_role.lambda-basic-execution.name}",
@@ -36,8 +41,9 @@ resource "aws_iam_policy_attachment" "AmazonSNSFullAccess-attach" {
   name       = "AmazonSNSFullAccess-attachment"
   roles      = ["${aws_iam_role.lambda-basic-execution.name}",
                 "${aws_iam_role.lambda-with-full-sns.name}",
-                "${aws_iam_role.lambda-with-full-sns-and-dynamodb.name}"]
-  groups     = ["deployers"] 
+                "${aws_iam_role.lambda-with-full-sns-and-dynamodb.name}",
+                "${aws.iam_role.lambda-with-full-sqs-and-sns.name}"]
+  groups     = ["deployers"]
   policy_arn = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
 }
 
@@ -50,7 +56,9 @@ resource "aws_iam_policy_attachment" "AmazonDynamoDBFullAccess-attach" {
 
 resource "aws_iam_policy_attachment" "AmazonSQSFullAccess-attach" {
   name       = "AmazonSQSFullAccess-attachment"
-  roles      = ["${aws_iam_role.lambda-with-full-sqs.name}"]
+  roles      = ["${aws_iam_role.lambda-with-full-sqs.name}",
+                "${aws.iam_role.lambda-with-full-sqs-and-sns.name}"]
+  groups     = ["deployers"]
   policy_arn = "arn:aws:iam::aws:policy/AmazonSQSFullAccess"
 }
 
