@@ -17,10 +17,13 @@ cd $SRC_DIR
 for d in $(ls -1)
 do
   cd $d
-  npm install
-  cd ..
+  if [ -z package.json]
+  then
+    npm install
+  fi
+  cd $SRC_DIR
 done
-    
+
 echo 'Zip sources'
 cd $DEPLOY_DIR
 sh ./zip_sources.sh

@@ -1,8 +1,8 @@
 {
-  "name": "RefreshTitlesForAuthor",
+  "name": "UnqueueProdAdvResponse",
   "version": "1.0.0",
   "description": "",
-  "main": "RefreshTitlesForAuthor.js",
+  "main": "UnqueueProdAdvResponse.js",
   "dependencies": {
     "async": "^2.3.0",
     "aws-lib": "^0.3.0",

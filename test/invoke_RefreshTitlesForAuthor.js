@@ -17,6 +17,6 @@ var testProdAdvClient = function(dummy, callback) {
 console.log("\n");
 lambdaFunc.lambda_handler(testEvent, testContext, function(err, msg) {
     console.log("--------");
-    console.log(util.format("Lamda function %s exited with message: %s \nerr: %s\n", functionName, msg, err));
+    console.log(util.format("Lambda function %s exited with message: %s \nerr: %s\n", functionName, msg, err));
     process.exit();
 }, testProdAdvClient);

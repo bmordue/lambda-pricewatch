@@ -99,28 +99,24 @@ function prepareDynamoParams(item) {
             },
             "Author": {
                 SS: authorList
-            },
-            "Publisher": {
-                S: item.ItemAttributes.Publisher
-            },
-            "Title": {
-                S: item.ItemAttributes.Title
-            },
-            "ListPrice": {
-                M: {
-                    "Amount": {
-                        N: Number(item.ItemAttributes.ListPrice.Amount)
-                    },
-                    "CurrencyCode": {
-                        S: item.ItemAttributes.ListPrice.CurrencyCode
-                    },
-                    "FormattedPrice": {
-                        S: item.ItemAttributes.ListPrice.FormattedPrice
-                    }
-                }
             }
         }
     };
+
+    if (item.ItemAttributes) {
+        params.Publisher = { S: item.ItemAttributes.Publisher };
+        params.Title = { S: item.ItemAttributes.Title };
+
+        if (item.ItemAttributes.ListPrice) {
+            params.ListPrice = {
+                M: {
+                    Amount: { S: item.ItemAttributes.ListPrice.Amount },
+                    CurrencyCode: { S: item.ItemAttributes.ListPrice.CurrencyCode },
+                    FormattedPrice: { S: item.ItemAttributes.ListPrice.FormattedPrice }
+                }
+            };
+        } else { console.log("Did not find item.ItemAttributes.ListPrice element"); }
+    } else { console.log("Did not find item.ItemAttributes element"); }
 
     console.log("Prepared params for dynamo query");
     console.log(JSON.stringify(params, null, 2));

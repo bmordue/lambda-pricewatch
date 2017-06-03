@@ -18,6 +18,10 @@ resource "aws_iam_role" "lambda-with-full-dynamodb" {
   assume_role_policy = "${file("lambda_execution_policy.json")}"
 }
 
+resource "aws_iam_role" "lambda-with-full-sqs" {
+  name = "lambda-with-full-sqs"
+  assume_role_policy = "${file("lambda_execution_policy.json")}"
+}
 
 resource "aws_iam_policy_attachment" "AWSLambdaDynamoDBExecutionRole-attach" {
   name       = "AWSLambdaDynamoDBExecutionRole-attachment"
@@ -42,6 +46,12 @@ resource "aws_iam_policy_attachment" "AmazonDynamoDBFullAccess-attach" {
   roles      = ["${aws_iam_role.lambda-with-full-dynamodb.name}",
                 "${aws_iam_role.lambda-with-full-sns-and-dynamodb.name}"]
   policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+}
+
+resource "aws_iam_policy_attachment" "AmazonSQSFullAccess-attach" {
+  name       = "AmazonSQSFullAccess-attachment"
+  roles      = ["${aws_iam_role.lambda-with-full-sqs.name}"]
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSQSFullAccess"
 }
 
 # TODO: more granular roles -- nothing should have full access
