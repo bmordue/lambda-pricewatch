@@ -6,6 +6,8 @@ var util = require("util");
 var prodAdvClient;
 
 exports.lambda_handler = function(event, context, callback) {
+    console.log(util.format("DEBUG: function received event:  %j", event);
+
     var keyId = process.env.AMZN_ACCESS_KEY_ID;
     var keySecret = process.env.AMZN_ACCESS_KEY_SECRET;
     var associateTag = process.env.AMZN_ASSOCIATE_TAG;

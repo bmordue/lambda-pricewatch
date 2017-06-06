@@ -9,6 +9,6 @@ exports.lambda_handler = function(event, context, callback) {
     // make the request; wait for response
     // publish the response to the response queue
     // publish a notification on the ProdAdv response topic
-
+    console.log(util.format("DEBUG: function received event:  %j", event);
     callback(new Error('UnqueueProdAdvRequest is not yet implemented'));
 };
