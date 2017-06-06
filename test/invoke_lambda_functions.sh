@@ -1,13 +1,14 @@
-source ./test.env
+#!/bin/bash
+source './test.env'
 set -x
 
 mkdir -p tmp
-for f in $(find ../src/ -maxdepth 2 -name '*js')
+for f in $(ls -1 ../src)
 do
-  filename=${f##*/}
-  function_name=${filename%.js}
+  function_name=$f
   echo "Manually invoke $function_name"
   aws lambda invoke \
+    --region $AWS_REGION \
     --invocation-type RequestResponse \
     --function-name $function_name \
     --payload file://./input/${function_name}.test.json \
