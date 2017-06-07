@@ -5,7 +5,6 @@
   "main": "RefreshTitlesForAuthor.js",
   "dependencies": {
     "async": "^2.3.0",
-    "aws-lib": "^0.3.0",
     "aws-sdk": "^2.41.0"
   },
   "devDependencies": {},

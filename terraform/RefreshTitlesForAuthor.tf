@@ -9,11 +9,7 @@ resource "aws_lambda_function" "RefreshTitlesForAuthor" {
 
   environment {
     variables = {
-      AMZN_SERVICE_HOST = "${var.amzn_service_host}"
-      AMZN_ACCESS_KEY_ID = "${var.amzn_access_key_id}"
-      AMZN_ACCESS_KEY_SECRET = "${var.amzn_access_key_secret}"
-      AMZN_ASSOCIATE_TAG = "${var.amzn_associate_tag}"
-      TITLES_TABLE_NAME = "${aws_dynamodb_table.pricewatch_titles.id}"
+      REQUEST_QUEUE_URL = "${aws_sqs_queue.prodadv_requests.id}"
     }
   }
 }
@@ -31,4 +27,3 @@ resource "aws_lambda_permission" "titles_refresh_for_author_with_sns" {
   principal     = "sns.amazonaws.com"
   source_arn    = "${aws_sns_topic.author_refresh.arn}"
 }
-
