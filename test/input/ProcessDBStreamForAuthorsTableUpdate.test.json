@@ -10,8 +10,8 @@
           }
         },
         "NewImage": {
-          "Message": {
-            "S": "New item!"
+          "AuthorName": {
+            "S": "Alice Jones"
           },
           "Id": {
             "N": "101"
@@ -31,8 +31,8 @@
       "eventVersion": "1.0",
       "dynamodb": {
         "OldImage": {
-          "Message": {
-            "S": "New item!"
+          "AuthorName": {
+            "S": "Alice Jones"
           },
           "Id": {
             "N": "101"
@@ -46,8 +46,8 @@
         },
         "SizeBytes": 59,
         "NewImage": {
-          "Message": {
-            "S": "This item has changed"
+          "AuthorName": {
+            "S": "Alice NewName-Jones"
           },
           "Id": {
             "N": "101"
@@ -72,8 +72,8 @@
         "SizeBytes": 38,
         "SequenceNumber": "333",
         "OldImage": {
-          "Message": {
-            "S": "This item has changed"
+          "AuthorName": {
+            "S": "Alice NewName-Jones"
           },
           "Id": {
             "N": "101"
