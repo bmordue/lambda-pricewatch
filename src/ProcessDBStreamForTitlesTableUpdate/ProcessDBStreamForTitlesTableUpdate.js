@@ -3,7 +3,7 @@ var util = require('util');
 
 exports.lambda_handler = function(event, context, callback) {
   var sns = new SNS();
-  console.log(util.format("DEBUG: function received event:  %j", event);
+  console.log(util.format("DEBUG: function received event:  %j", event));
   console.log("About to process " + event.Records.length + " events");
   event.Records.forEach(function(record) {
     if (record.eventName == "INSERT") {

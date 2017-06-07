@@ -6,6 +6,6 @@ var util = require("util");
 
 exports.lambda_handler = function(event, context, callback) {
     // take a message from the ProdAdv response queue and pass it on to the appropriate handler queue
-    console.log(util.format("DEBUG: function received event:  %j", event);
+    console.log(util.format("DEBUG: function received event:  %j", event));
     callback(new Error('UnqueueProdAdvResponse is not yet implemented'));
 };

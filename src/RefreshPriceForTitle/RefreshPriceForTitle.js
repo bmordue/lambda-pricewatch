@@ -11,7 +11,7 @@ exports.lambda_handler = function(event, context, callback) {
     var associateTag = process.env.AMZN_ASSOCIATE_TAG;
     var amazonServiceHost = process.env.AMZN_SERVICE_HOST;
 
-    console.log(util.format("DEBUG: function received event:  %j", event);
+    console.log(util.format("DEBUG: function received event:  %j", event));
 
     prodAdvClient = aws.createProdAdvClient(keyId, keySecret, associateTag, { host: amazonServiceHost});
 
