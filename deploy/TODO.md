@@ -1,3 +1,4 @@
 - [] KMS for secrets
+- [] stage/'prod' envs (eg using different regions)
 - [] Continuous integration
 - [] Limit roles to only what is required
