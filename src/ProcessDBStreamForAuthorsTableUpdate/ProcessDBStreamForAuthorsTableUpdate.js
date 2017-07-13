@@ -20,7 +20,7 @@ exports.lambda_handler = function(event, context, callback) {
         if (err) {
           console.log("Error publishing to topic: " + err);
         } else {
-          console.log("Sent message for author " + author);
+          console.log("Published SNS message for author " + author);
         }
       });
     } else {
