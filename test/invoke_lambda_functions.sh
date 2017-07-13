@@ -1,6 +1,6 @@
 #!/bin/bash
 source './test.env'
-set -x
+#set -x
 
 mkdir -p tmp
 for f in $(ls -1 ../src)
@@ -14,4 +14,4 @@ do
     --payload file://./input/${function_name}.test.json \
     tmp/${function_name}.output.json
 done
-set +ex
+#set +ex
