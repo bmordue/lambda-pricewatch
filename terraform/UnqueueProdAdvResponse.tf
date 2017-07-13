@@ -14,6 +14,22 @@ resource "aws_lambda_function" "UnqueueProdAdvResponse" {
       AMZN_ACCESS_KEY_SECRET = "${var.amzn_access_key_secret}"
       AMZN_ASSOCIATE_TAG = "${var.amzn_associate_tag}"
       TITLES_TABLE_NAME = "${aws_dynamodb_table.pricewatch_titles.id}"
+      PRODADV_RESPONSE_QUEUE_URL = "${aws_sqs_queue.prodadv_responses.id}"
     }
   }
 }
+
+resource "aws_sns_topic_subscription" "prodadv_responses_queued" {
+  topic_arn = "${aws_sns_topic.prodadv_response_received.arn}"
+  protocol  = "lambda"
+  endpoint  = "${aws_lambda_function.UnqueueProdAdvResponse.arn}"
+}
+
+resource "aws_lambda_permission" "unqueue_prodadv_response_with_sns" {
+  statement_id  = "AllowExecutionFromSNS"
+  action        = "lambda:InvokeFunction"
+  function_name = "${aws_lambda_function.UnqueueProdAdvResponse.arn}"
+  principal     = "sns.amazonaws.com"
+  source_arn    = "${aws_sns_topic.prodadv_response_received.arn}"
+}
+

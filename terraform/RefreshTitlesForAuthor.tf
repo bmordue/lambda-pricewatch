@@ -10,6 +10,7 @@ resource "aws_lambda_function" "RefreshTitlesForAuthor" {
   environment {
     variables = {
       REQUEST_QUEUE_URL = "${aws_sqs_queue.prodadv_requests.id}"
+      PRODADV_REQUEST_QUEUED_TOPIC_ARN = "${aws_sns_topic.prodadv_request_queued.arn}"
     }
   }
 }
