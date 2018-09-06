@@ -1,12 +1,17 @@
 var async = require("async");
 var aws = require("aws-lib");
 var aws_sdk = require("aws-sdk");
-var db = new aws_sdk.DynamoDB();
+var dbDocClient = new aws_sdk.DynamoDB.DocumentClient();
 var util = require("util");
 var SQS = require('aws-sdk/clients/sqs');
 
 var sqs = new SQS();
 const queueUrl = process.env.PRODADV_RESPONSE_QUEUE_URL;
+
+const PRODADV_TITLES_FOR_AUTHOR_REQUEST_TYPE = "PRODADV_TITLES_FOR_AUTHOR";
+const PRODADV_PRICE_FOR_TITLE_REQUEST_TYPE = "PRODADV_PRICE_FOR_TITLE_REQUEST";
+const PRICE_LOOKUP_NOTIFICATION_MESSAGE = "Queued ProdAdv request for title price lookup";
+const titlesTable = process.env.TITLES_TABLE_NAME;
 
 exports.lambda_handler = function(event, context, callback) {
     // take a message from the ProdAdv response queue
@@ -44,6 +49,21 @@ function handleMessageBatch(data, callback) {
 }
 
 function handleMessage(message, callback) {
+    switch (requestType) {
+        case PRODADV_TITLES_FOR_AUTHOR_REQUEST_TYPE:
+            return handleTitlesForAuthorResponse(message, callback);
+            break;
+        case PRODADV_PRICE_FOR_TITLE_REQUEST_TYPE:
+            return handlePriceForTitleResponse(message, callback);
+            break;
+        default:
+            console.log(util.format("Ignoring SQS message of type %s", requestType));
+            return callback();
+            break;
+    }
+}
+
+function handleTitlesForAuthorResponse(message, callback) {
     var body;
     var items;
     try {
@@ -56,11 +76,70 @@ function handleMessage(message, callback) {
     var uniqueItems = items.filter(function(item, index, arr) {
         return arr.indexOf(item) === index;
     });
-    async.each(uniqueItems, handleItem, callback);
+    async.each(uniqueItems, handleAuthorResponseItem, callback);
 }
 
-function handleItem(item, callback) {
+function handleAuthorResponseItem(item, callback) {
     var asin = item.ASIN;
-    console.log(util.format("DEBUG: received ASIN in body: ", asin));
+    console.log(util.format("DEBUG: received ASIN in body: %s", asin));
+    console.log("WARNING: handleItem is not yet implemented");
+    
+    // queue ProdAdv request for item details
+    console.log("Requested title details for ASIN " + asin);
+    var req_params = {
+        ItemId: asin,
+        ResponseGroup: "Offers"
+    };
+
+    // put request object in SQS queue
+    enqueueRequest(JSON.stringify(req_params), callback);
+}
+
+function handlePriceForTitleResponse(message, callback) {
+    console.log("DEBUG: process response to request for title price: %j", message);
+    console.log("WARNING: handlePriceForTitleResponse is not yet implemented");
+    
+    // TODO: make sure item 'path' is correct
+    // var item = message.Items.item;
+    
+    // insert details into db
+    // TODO: update if present, insert if not
+    // var params = {
+    //     TableName: titlesTable,
+    //     Item: item
+    // };
+    // dbDocClient.put(params, callback);
     callback();
+}
+
+function enqueueRequest(body, callback) {
+    var sqs = new SQS();
+
+    var msg_params = {
+        MessageBody: body,
+        QueueUrl: process.env.REQUEST_QUEUE_URL,
+        MessageAttributes: {
+            requestType: { DataType: 'String', StringValue: PRODADV_PRICE_FOR_TITLE_REQUEST_TYPE }
+        }
+    };
+    console.log(util.format("DEBUG - SQS message body: %j", body));
+    sqs.sendMessage(msg_params, function(err, data) {
+        if (err) {
+            console.log("Error sending SQS message");
+            console.log(err, err.stack);
+            return callback(err);
+        } else {
+            console.log("Sent message to SQS");
+            console.log(data);
+            return publishNotification(callback);
+        }
+    });
+}
+
+function publishNotification(callback) {
+    var sns = new SNS();
+    sns.publish({
+        TopicArn: process.env.PRODADV_REQUEST_QUEUED_TOPIC_ARN,
+        Message: PRICE_LOOKUP_NOTIFICATION_MESSAGE
+    }, callback);
 }

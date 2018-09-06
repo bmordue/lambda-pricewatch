@@ -4,7 +4,7 @@ var SQS = require('aws-sdk/clients/sqs');
 var util = require('util');
 
 const PRODADV_TITLES_FOR_AUTHOR_REQUEST_TYPE = "PRODADV_TITLES_FOR_AUTHOR";
-const GENERIC_NOTIFICATION_MESSAGE = "Queued ProdAdv request for titles by author";
+const TITLE_REFRESH_NOTIFICATION_MESSAGE = "Queued ProdAdv request for titles by author";
 
 exports.lambda_handler = function(event, context, callback) {
     console.log(util.format("DEBUG: %j", event));
@@ -24,7 +24,7 @@ function handleNotification(record, callback) {
     var req_params = {
         Author: authorName,
         SearchIndex: "KindleStore",
-        ResponseGroup: "ItemIds"
+        ResponseGroup: "ItemIds,Offers"
     };
 
     // put request object in SQS queue
@@ -59,6 +59,6 @@ function publishNotification(callback) {
     var sns = new SNS();
     sns.publish({
         TopicArn: process.env.PRODADV_REQUEST_QUEUED_TOPIC_ARN,
-        Message: GENERIC_NOTIFICATION_MESSAGE
+        Message: TITLE_REFRESH_NOTIFICATION_MESSAGE
     }, callback);
 }

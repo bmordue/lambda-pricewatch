@@ -15,6 +15,9 @@ resource "aws_lambda_function" "UnqueueProdAdvResponse" {
       AMZN_ASSOCIATE_TAG = "${var.amzn_associate_tag}"
       TITLES_TABLE_NAME = "${aws_dynamodb_table.pricewatch_titles.id}"
       PRODADV_RESPONSE_QUEUE_URL = "${aws_sqs_queue.prodadv_responses.id}"
+      PRODADV_REQUEST_QUEUED_TOPIC_ARN = "${aws_sns_topic.prodadv_request_queued.arn}"
+      REQUEST_QUEUE_URL = "${aws_sqs_queue.prodadv_requests.id}"
+      TITLES_TABLE_NAME = ${"aws_dynamodb_table.pricewatch_titles.name}"
     }
   }
 }
