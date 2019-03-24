@@ -5,7 +5,7 @@ variable "region" {
   default = "eu-west-1"
 }
 variable "node_runtime" {
-  default = "nodejs6.10"
+  default = "nodejs8.10"
 }
 variable "project_name" {
   default = "lambda-pricewatch"
