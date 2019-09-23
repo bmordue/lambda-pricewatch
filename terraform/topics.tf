@@ -5,3 +5,4 @@ resource "aws_sns_topic" "author_refresh" {
 resource "aws_sns_topic" "title_refresh" {
   name = "title_refresh_topic"
 }
+
