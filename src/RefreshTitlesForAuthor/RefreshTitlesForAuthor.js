@@ -5,7 +5,7 @@ var db = new aws_sdk.DynamoDB();
 var util = require("util");
 var prodAdvClient;
 
-exports.lambda_handler = function(event, context, callback) {
+exports.lambda_handler = async function(event, context, callback) {
     var keyId = process.env.AMZN_ACCESS_KEY_ID;
     var keySecret = process.env.AMZN_ACCESS_KEY_SECRET;
     var associateTag = process.env.AMZN_ASSOCIATE_TAG;
@@ -37,7 +37,7 @@ function handleNotification(record, callback) {
             return callback(err);
         }
         console.log(util.format("Got %s results for %s", resultsPage.Items.TotalResults, authorName));
-        
+
         var pages = pageNumbersAsList(resultsPage.Items.TotalPages);
 
         handleResultsPage(resultsPage, function(err) {

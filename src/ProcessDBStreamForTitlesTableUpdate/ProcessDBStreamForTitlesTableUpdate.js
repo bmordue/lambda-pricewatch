@@ -1,28 +1,31 @@
-var SNS = require('aws-sdk/clients/sns');
+const SNS = require('aws-sdk/clients/sns');
+const util = require('util');
 
-exports.lambda_handler = function(event, context, callback) {
-  var sns = new SNS();
-  console.log("About to process " + event.Records.length + " events");
-  event.Records.forEach(function(record) {
-    if (record.eventName == "INSERT") {
-      try {
-        var asin = record.dynamodb.NewImage.ASIN.S;
-      } catch (e) {
-        return callback(e, "Error extracting ASIN from update stream");
+function publishOnInsert(record) {
+  return new Promise((resolve, reject) => {
+      if (record.eventName != "INSERT") {
+        console.log("Skipping record -- record.eventName: " + record.eventName);
+        resolve();
+      } else {
+        console.log("Found INSERT record");
       }
+      const asin = record.dynamodb.NewImage.ASIN.S;
+      let sns = new SNS();
       sns.publish({
           TopicArn: process.env.TITLE_REFRESH_TOPIC_ARN,
           Message: asin
       }, function(err, data) {
-        if (err) {
-          console.log("Error publishing to topic: " + err);
-        } else {
-          console.log("Sent message for ASIN " + asin);
-        }
+        if (err) { reject(err); }
+        console.log("Sent message for ASIN " + asin);
+        resolve();
       });
-    } else {
-      console.log("Skipping record -- record.eventName: " + record.eventName);
-    }
   });
-  callback(null, "done");
+}
+
+exports.lambda_handler = async function(event, context) {
+  if (event.Records) {
+    console.log("About to process " + event.Records.length + " events");
+  }
+  let publishes = event.Records.map(publishOnInsert);
+  let result = await Promise.all(publishes);
 };
