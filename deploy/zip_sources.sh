@@ -15,7 +15,7 @@ do
   zip $TARGET_DIR/$d.zip *.js
   if [ -e 'package.json' ]
   then
-    npm install
+#    npm install
     zip -ru $TARGET_DIR/$d.zip node_modules/*
   fi
   cd ..

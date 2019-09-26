@@ -1,0 +1,6 @@
+lambda-basic-execution
+lambda-with-full-dynamodb
+lambda-with-full-sns
+lambda-with-full-sns-and-dynamodb
+lambda-with-full-sqs
+lambda-with-full-sqs-and-sns

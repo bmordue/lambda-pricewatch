@@ -1,0 +1,614 @@
+[0m[1mRefreshing Terraform state in-memory prior to plan...[0m
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+[0m
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  [32m+[0m create
+[0m
+Terraform will perform the following actions:
+
+[1m  # aws_cloudtrail.default[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_cloudtrail" "default" {
+      [32m+[0m [0m[1m[0marn[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0menable_log_file_validation[0m[0m    = false
+      [32m+[0m [0m[1m[0menable_logging[0m[0m                = true
+      [32m+[0m [0m[1m[0mhome_region[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0minclude_global_service_events[0m[0m = true
+      [32m+[0m [0m[1m[0mis_multi_region_trail[0m[0m         = false
+      [32m+[0m [0m[1m[0mis_organization_trail[0m[0m         = false
+      [32m+[0m [0m[1m[0mname[0m[0m                          = "tf-cloudtrail"
+      [32m+[0m [0m[1m[0ms3_bucket_name[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0ms3_key_prefix[0m[0m                 = "lambda-pricewatch"
+    }
+
+[1m  # aws_cloudwatch_event_rule.daily[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_cloudwatch_event_rule" "daily" {
+      [32m+[0m [0m[1m[0marn[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mis_enabled[0m[0m          = true
+      [32m+[0m [0m[1m[0mname[0m[0m                = "daily"
+      [32m+[0m [0m[1m[0mschedule_expression[0m[0m = "rate(1 day)"
+    }
+
+[1m  # aws_cloudwatch_event_rule.monthly[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_cloudwatch_event_rule" "monthly" {
+      [32m+[0m [0m[1m[0marn[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mis_enabled[0m[0m          = true
+      [32m+[0m [0m[1m[0mname[0m[0m                = "monthly"
+      [32m+[0m [0m[1m[0mschedule_expression[0m[0m = "rate(30 days)"
+    }
+
+[1m  # aws_cloudwatch_event_rule.weekly[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_cloudwatch_event_rule" "weekly" {
+      [32m+[0m [0m[1m[0marn[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mis_enabled[0m[0m          = true
+      [32m+[0m [0m[1m[0mname[0m[0m                = "weekly"
+      [32m+[0m [0m[1m[0mschedule_expression[0m[0m = "rate(7 days)"
+    }
+
+[1m  # aws_cloudwatch_event_target.daily_price_refresh[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_cloudwatch_event_target" "daily_price_refresh" {
+      [32m+[0m [0m[1m[0marn[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mrule[0m[0m      = "daily"
+      [32m+[0m [0m[1m[0mtarget_id[0m[0m = (known after apply)
+    }
+
+[1m  # aws_cloudwatch_event_target.monthly_title_refresh[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_cloudwatch_event_target" "monthly_title_refresh" {
+      [32m+[0m [0m[1m[0marn[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mrule[0m[0m      = "monthly"
+      [32m+[0m [0m[1m[0mtarget_id[0m[0m = (known after apply)
+    }
+
+[1m  # aws_dynamodb_table.pricewatch_authors[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_dynamodb_table" "pricewatch_authors" {
+      [32m+[0m [0m[1m[0marn[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mbilling_mode[0m[0m     = "PROVISIONED"
+      [32m+[0m [0m[1m[0mhash_key[0m[0m         = "AuthorName"
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m             = "pricewatch_authors"
+      [32m+[0m [0m[1m[0mread_capacity[0m[0m    = 10
+      [32m+[0m [0m[1m[0mstream_arn[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mstream_enabled[0m[0m   = true
+      [32m+[0m [0m[1m[0mstream_label[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mstream_view_type[0m[0m = "NEW_AND_OLD_IMAGES"
+      [32m+[0m [0m[1m[0mwrite_capacity[0m[0m   = 10
+
+      [32m+[0m [0mattribute {
+          [32m+[0m [0m[1m[0mname[0m[0m = "AuthorName"
+          [32m+[0m [0m[1m[0mtype[0m[0m = "S"
+        }
+
+      [32m+[0m [0mpoint_in_time_recovery {
+          [32m+[0m [0m[1m[0menabled[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mserver_side_encryption {
+          [32m+[0m [0m[1m[0menabled[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # aws_dynamodb_table.pricewatch_titles[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_dynamodb_table" "pricewatch_titles" {
+      [32m+[0m [0m[1m[0marn[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mbilling_mode[0m[0m     = "PROVISIONED"
+      [32m+[0m [0m[1m[0mhash_key[0m[0m         = "ASIN"
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m             = "pricewatch_titles"
+      [32m+[0m [0m[1m[0mread_capacity[0m[0m    = 10
+      [32m+[0m [0m[1m[0mstream_arn[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mstream_enabled[0m[0m   = true
+      [32m+[0m [0m[1m[0mstream_label[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mstream_view_type[0m[0m = "NEW_AND_OLD_IMAGES"
+      [32m+[0m [0m[1m[0mwrite_capacity[0m[0m   = 10
+
+      [32m+[0m [0mattribute {
+          [32m+[0m [0m[1m[0mname[0m[0m = "ASIN"
+          [32m+[0m [0m[1m[0mtype[0m[0m = "S"
+        }
+
+      [32m+[0m [0mpoint_in_time_recovery {
+          [32m+[0m [0m[1m[0menabled[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mserver_side_encryption {
+          [32m+[0m [0m[1m[0menabled[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # aws_iam_policy_attachment.AWSLambdaDynamoDBExecutionRole-attach[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_iam_policy_attachment" "AWSLambdaDynamoDBExecutionRole-attach" {
+      [32m+[0m [0m[1m[0mid[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m       = "AWSLambdaDynamoDBExecutionRole-attachment"
+      [32m+[0m [0m[1m[0mpolicy_arn[0m[0m = "arn:aws:iam::aws:policy/service-role/AWSLambdaDynamoDBExecutionRole"
+      [32m+[0m [0m[1m[0mroles[0m[0m      = [
+          [32m+[0m [0m"lambda-basic-execution",
+          [32m+[0m [0m"lambda-with-full-dynamodb",
+          [32m+[0m [0m"lambda-with-full-sns",
+          [32m+[0m [0m"lambda-with-full-sns-and-dynamodb",
+        ]
+    }
+
+[1m  # aws_iam_policy_attachment.AmazonDynamoDBFullAccess-attach[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_iam_policy_attachment" "AmazonDynamoDBFullAccess-attach" {
+      [32m+[0m [0m[1m[0mid[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m       = "AmazonDynamoDBFullAccess-attachment"
+      [32m+[0m [0m[1m[0mpolicy_arn[0m[0m = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+      [32m+[0m [0m[1m[0mroles[0m[0m      = [
+          [32m+[0m [0m"lambda-with-full-dynamodb",
+          [32m+[0m [0m"lambda-with-full-sns-and-dynamodb",
+        ]
+    }
+
+[1m  # aws_iam_policy_attachment.AmazonSNSFullAccess-attach[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_iam_policy_attachment" "AmazonSNSFullAccess-attach" {
+      [32m+[0m [0m[1m[0mgroups[0m[0m     = [
+          [32m+[0m [0m"deployers",
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m       = "AmazonSNSFullAccess-attachment"
+      [32m+[0m [0m[1m[0mpolicy_arn[0m[0m = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
+      [32m+[0m [0m[1m[0mroles[0m[0m      = [
+          [32m+[0m [0m"lambda-basic-execution",
+          [32m+[0m [0m"lambda-with-full-sns",
+          [32m+[0m [0m"lambda-with-full-sns-and-dynamodb",
+        ]
+    }
+
+[1m  # aws_iam_role.lambda-basic-execution[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_iam_role" "lambda-basic-execution" {
+      [32m+[0m [0m[1m[0marn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0massume_role_policy[0m[0m    = jsonencode(
+            {
+              [32m+[0m [0mStatement = [
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction    = "sts:AssumeRole"
+                      [32m+[0m [0mEffect    = "Allow"
+                      [32m+[0m [0mPrincipal = {
+                          [32m+[0m [0mService = "lambda.amazonaws.com"
+                        }
+                    },
+                ]
+              [32m+[0m [0mVersion   = "2012-10-17"
+            }
+        )
+      [32m+[0m [0m[1m[0mcreate_date[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mforce_detach_policies[0m[0m = false
+      [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mmax_session_duration[0m[0m  = 3600
+      [32m+[0m [0m[1m[0mname[0m[0m                  = "lambda-basic-execution"
+      [32m+[0m [0m[1m[0mpath[0m[0m                  = "/"
+      [32m+[0m [0m[1m[0munique_id[0m[0m             = (known after apply)
+    }
+
+[1m  # aws_iam_role.lambda-with-full-dynamodb[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_iam_role" "lambda-with-full-dynamodb" {
+      [32m+[0m [0m[1m[0marn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0massume_role_policy[0m[0m    = jsonencode(
+            {
+              [32m+[0m [0mStatement = [
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction    = "sts:AssumeRole"
+                      [32m+[0m [0mEffect    = "Allow"
+                      [32m+[0m [0mPrincipal = {
+                          [32m+[0m [0mService = "lambda.amazonaws.com"
+                        }
+                    },
+                ]
+              [32m+[0m [0mVersion   = "2012-10-17"
+            }
+        )
+      [32m+[0m [0m[1m[0mcreate_date[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mforce_detach_policies[0m[0m = false
+      [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mmax_session_duration[0m[0m  = 3600
+      [32m+[0m [0m[1m[0mname[0m[0m                  = "lambda-with-full-dynamodb"
+      [32m+[0m [0m[1m[0mpath[0m[0m                  = "/"
+      [32m+[0m [0m[1m[0munique_id[0m[0m             = (known after apply)
+    }
+
+[1m  # aws_iam_role.lambda-with-full-sns[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_iam_role" "lambda-with-full-sns" {
+      [32m+[0m [0m[1m[0marn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0massume_role_policy[0m[0m    = jsonencode(
+            {
+              [32m+[0m [0mStatement = [
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction    = "sts:AssumeRole"
+                      [32m+[0m [0mEffect    = "Allow"
+                      [32m+[0m [0mPrincipal = {
+                          [32m+[0m [0mService = "lambda.amazonaws.com"
+                        }
+                    },
+                ]
+              [32m+[0m [0mVersion   = "2012-10-17"
+            }
+        )
+      [32m+[0m [0m[1m[0mcreate_date[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mforce_detach_policies[0m[0m = false
+      [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mmax_session_duration[0m[0m  = 3600
+      [32m+[0m [0m[1m[0mname[0m[0m                  = "lambda-with-full-sns"
+      [32m+[0m [0m[1m[0mpath[0m[0m                  = "/"
+      [32m+[0m [0m[1m[0munique_id[0m[0m             = (known after apply)
+    }
+
+[1m  # aws_iam_role.lambda-with-full-sns-and-dynamodb[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_iam_role" "lambda-with-full-sns-and-dynamodb" {
+      [32m+[0m [0m[1m[0marn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0massume_role_policy[0m[0m    = jsonencode(
+            {
+              [32m+[0m [0mStatement = [
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction    = "sts:AssumeRole"
+                      [32m+[0m [0mEffect    = "Allow"
+                      [32m+[0m [0mPrincipal = {
+                          [32m+[0m [0mService = "lambda.amazonaws.com"
+                        }
+                    },
+                ]
+              [32m+[0m [0mVersion   = "2012-10-17"
+            }
+        )
+      [32m+[0m [0m[1m[0mcreate_date[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mforce_detach_policies[0m[0m = false
+      [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mmax_session_duration[0m[0m  = 3600
+      [32m+[0m [0m[1m[0mname[0m[0m                  = "lambda-with-full-sns-and-dynamodb"
+      [32m+[0m [0m[1m[0mpath[0m[0m                  = "/"
+      [32m+[0m [0m[1m[0munique_id[0m[0m             = (known after apply)
+    }
+
+[1m  # aws_lambda_event_source_mapping.authors_event_source_mapping[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_lambda_event_source_mapping" "authors_event_source_mapping" {
+      [32m+[0m [0m[1m[0menabled[0m[0m                 = true
+      [32m+[0m [0m[1m[0mevent_source_arn[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mfunction_arn[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mfunction_name[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mlast_modified[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mlast_processing_result[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mstarting_position[0m[0m       = "TRIM_HORIZON"
+      [32m+[0m [0m[1m[0mstate[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mstate_transition_reason[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0muuid[0m[0m                    = (known after apply)
+    }
+
+[1m  # aws_lambda_event_source_mapping.titles_event_source_mapping[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_lambda_event_source_mapping" "titles_event_source_mapping" {
+      [32m+[0m [0m[1m[0menabled[0m[0m                 = true
+      [32m+[0m [0m[1m[0mevent_source_arn[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mfunction_arn[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mfunction_name[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mlast_modified[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mlast_processing_result[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mstarting_position[0m[0m       = "TRIM_HORIZON"
+      [32m+[0m [0m[1m[0mstate[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mstate_transition_reason[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0muuid[0m[0m                    = (known after apply)
+    }
+
+[1m  # aws_lambda_function.ProcessDBStreamForAuthorsTableUpdate[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_lambda_function" "ProcessDBStreamForAuthorsTableUpdate" {
+      [32m+[0m [0m[1m[0marn[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mfilename[0m[0m                       = "../target/ProcessDBStreamForAuthorsTableUpdate.zip"
+      [32m+[0m [0m[1m[0mfunction_name[0m[0m                  = "ProcessDBStreamForAuthorsTableUpdate"
+      [32m+[0m [0m[1m[0mhandler[0m[0m                        = "ProcessDBStreamForAuthorsTableUpdate.lambda_handler"
+      [32m+[0m [0m[1m[0mid[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0minvoke_arn[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mlast_modified[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mmemory_size[0m[0m                    = 128
+      [32m+[0m [0m[1m[0mpublish[0m[0m                        = false
+      [32m+[0m [0m[1m[0mqualified_arn[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mreserved_concurrent_executions[0m[0m = -1
+      [32m+[0m [0m[1m[0mrole[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mruntime[0m[0m                        = "nodejs8.10"
+      [32m+[0m [0m[1m[0msource_code_hash[0m[0m               = "TW44m0pOt7jQQmiZ0ahjFxuQibIhHVsMSuzAooS83p4="
+      [32m+[0m [0m[1m[0msource_code_size[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mtimeout[0m[0m                        = 3
+      [32m+[0m [0m[1m[0mversion[0m[0m                        = (known after apply)
+
+      [32m+[0m [0menvironment {
+          [32m+[0m [0m[1m[0mvariables[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mtracing_config {
+          [32m+[0m [0m[1m[0mmode[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # aws_lambda_function.ProcessDBStreamForTitlesTableUpdate[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_lambda_function" "ProcessDBStreamForTitlesTableUpdate" {
+      [32m+[0m [0m[1m[0marn[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mfilename[0m[0m                       = "../target/ProcessDBStreamForTitlesTableUpdate.zip"
+      [32m+[0m [0m[1m[0mfunction_name[0m[0m                  = "ProcessDBStreamForTitlesTableUpdate"
+      [32m+[0m [0m[1m[0mhandler[0m[0m                        = "ProcessDBStreamForTitlesTableUpdate.lambda_handler"
+      [32m+[0m [0m[1m[0mid[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0minvoke_arn[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mlast_modified[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mmemory_size[0m[0m                    = 128
+      [32m+[0m [0m[1m[0mpublish[0m[0m                        = false
+      [32m+[0m [0m[1m[0mqualified_arn[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mreserved_concurrent_executions[0m[0m = -1
+      [32m+[0m [0m[1m[0mrole[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mruntime[0m[0m                        = "nodejs8.10"
+      [32m+[0m [0m[1m[0msource_code_hash[0m[0m               = "oe8Y87p6O147tIaOYLx3f2J+hgCD8Y8Yf1ooRQIONrw="
+      [32m+[0m [0m[1m[0msource_code_size[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mtimeout[0m[0m                        = 3
+      [32m+[0m [0m[1m[0mversion[0m[0m                        = (known after apply)
+
+      [32m+[0m [0menvironment {
+          [32m+[0m [0m[1m[0mvariables[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mtracing_config {
+          [32m+[0m [0m[1m[0mmode[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # aws_lambda_function.RefreshPriceForTitle[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_lambda_function" "RefreshPriceForTitle" {
+      [32m+[0m [0m[1m[0marn[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mfilename[0m[0m                       = "../target/RefreshPriceForTitle.zip"
+      [32m+[0m [0m[1m[0mfunction_name[0m[0m                  = "RefreshPriceForTitle"
+      [32m+[0m [0m[1m[0mhandler[0m[0m                        = "RefreshPriceForTitle.lambda_handler"
+      [32m+[0m [0m[1m[0mid[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0minvoke_arn[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mlast_modified[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mmemory_size[0m[0m                    = 128
+      [32m+[0m [0m[1m[0mpublish[0m[0m                        = false
+      [32m+[0m [0m[1m[0mqualified_arn[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mreserved_concurrent_executions[0m[0m = -1
+      [32m+[0m [0m[1m[0mrole[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mruntime[0m[0m                        = "nodejs8.10"
+      [32m+[0m [0m[1m[0msource_code_hash[0m[0m               = "7MjODc3RoQC4yrpTRwTmHJ/m5E0hYPbLXrgfPgey4Tw="
+      [32m+[0m [0m[1m[0msource_code_size[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mtimeout[0m[0m                        = 3
+      [32m+[0m [0m[1m[0mversion[0m[0m                        = (known after apply)
+
+      [32m+[0m [0menvironment {
+          [32m+[0m [0m[1m[0mvariables[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mtracing_config {
+          [32m+[0m [0m[1m[0mmode[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # aws_lambda_function.RefreshTitlesForAuthor[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_lambda_function" "RefreshTitlesForAuthor" {
+      [32m+[0m [0m[1m[0marn[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mfilename[0m[0m                       = "../target/RefreshTitlesForAuthor.zip"
+      [32m+[0m [0m[1m[0mfunction_name[0m[0m                  = "RefreshTitlesForAuthor"
+      [32m+[0m [0m[1m[0mhandler[0m[0m                        = "RefreshTitlesForAuthor.lambda_handler"
+      [32m+[0m [0m[1m[0mid[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0minvoke_arn[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mlast_modified[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mmemory_size[0m[0m                    = 128
+      [32m+[0m [0m[1m[0mpublish[0m[0m                        = false
+      [32m+[0m [0m[1m[0mqualified_arn[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mreserved_concurrent_executions[0m[0m = -1
+      [32m+[0m [0m[1m[0mrole[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mruntime[0m[0m                        = "nodejs8.10"
+      [32m+[0m [0m[1m[0msource_code_hash[0m[0m               = "OmCtZy5uzaiA4YO1Mgg1oZCqar40tEKAEHNyLZbUaG4="
+      [32m+[0m [0m[1m[0msource_code_size[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mtimeout[0m[0m                        = 3
+      [32m+[0m [0m[1m[0mversion[0m[0m                        = (known after apply)
+
+      [32m+[0m [0menvironment {
+          [32m+[0m [0m[1m[0mvariables[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mtracing_config {
+          [32m+[0m [0m[1m[0mmode[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # aws_lambda_function.RequestPriceRefreshForAllTitles[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_lambda_function" "RequestPriceRefreshForAllTitles" {
+      [32m+[0m [0m[1m[0marn[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mfilename[0m[0m                       = "../target/RequestPriceRefreshForAllTitles.zip"
+      [32m+[0m [0m[1m[0mfunction_name[0m[0m                  = "RequestPriceRefreshForAllTitles"
+      [32m+[0m [0m[1m[0mhandler[0m[0m                        = "RequestPriceRefreshForAllTitles.lambda_handler"
+      [32m+[0m [0m[1m[0mid[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0minvoke_arn[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mlast_modified[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mmemory_size[0m[0m                    = 128
+      [32m+[0m [0m[1m[0mpublish[0m[0m                        = false
+      [32m+[0m [0m[1m[0mqualified_arn[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mreserved_concurrent_executions[0m[0m = -1
+      [32m+[0m [0m[1m[0mrole[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mruntime[0m[0m                        = "nodejs8.10"
+      [32m+[0m [0m[1m[0msource_code_hash[0m[0m               = "RTHkl1RHfKY++ddqmt6ALjGxTqOXtmnHod9DSPFwxX4="
+      [32m+[0m [0m[1m[0msource_code_size[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mtimeout[0m[0m                        = 3
+      [32m+[0m [0m[1m[0mversion[0m[0m                        = (known after apply)
+
+      [32m+[0m [0menvironment {
+          [32m+[0m [0m[1m[0mvariables[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mtracing_config {
+          [32m+[0m [0m[1m[0mmode[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # aws_lambda_function.RequestTitlesRefreshForAllAuthors[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_lambda_function" "RequestTitlesRefreshForAllAuthors" {
+      [32m+[0m [0m[1m[0marn[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mfilename[0m[0m                       = "../target/RequestTitlesRefreshForAllAuthors.zip"
+      [32m+[0m [0m[1m[0mfunction_name[0m[0m                  = "RequestTitlesRefreshForAllAuthors"
+      [32m+[0m [0m[1m[0mhandler[0m[0m                        = "RequestTitlesRefreshForAllAuthors.lambda_handler"
+      [32m+[0m [0m[1m[0mid[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0minvoke_arn[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mlast_modified[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mmemory_size[0m[0m                    = 128
+      [32m+[0m [0m[1m[0mpublish[0m[0m                        = false
+      [32m+[0m [0m[1m[0mqualified_arn[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mreserved_concurrent_executions[0m[0m = -1
+      [32m+[0m [0m[1m[0mrole[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mruntime[0m[0m                        = "nodejs8.10"
+      [32m+[0m [0m[1m[0msource_code_hash[0m[0m               = "4Kwx/F3e9mgnGCva2E8VDJCKUT4xWEntuCH3tV4sZj4="
+      [32m+[0m [0m[1m[0msource_code_size[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mtimeout[0m[0m                        = 3
+      [32m+[0m [0m[1m[0mversion[0m[0m                        = (known after apply)
+
+      [32m+[0m [0menvironment {
+          [32m+[0m [0m[1m[0mvariables[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mtracing_config {
+          [32m+[0m [0m[1m[0mmode[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # aws_lambda_permission.daily_price_refresh_allow_cloudwatch[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_lambda_permission" "daily_price_refresh_allow_cloudwatch" {
+      [32m+[0m [0m[1m[0maction[0m[0m        = "lambda:InvokeFunction"
+      [32m+[0m [0m[1m[0mfunction_name[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mprincipal[0m[0m     = "events.amazonaws.com"
+      [32m+[0m [0m[1m[0msource_arn[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mstatement_id[0m[0m  = "AllowExecutionFromCloudWatch"
+    }
+
+[1m  # aws_lambda_permission.monthly_price_refresh_allow_cloudwatch[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_lambda_permission" "monthly_price_refresh_allow_cloudwatch" {
+      [32m+[0m [0m[1m[0maction[0m[0m        = "lambda:InvokeFunction"
+      [32m+[0m [0m[1m[0mfunction_name[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mprincipal[0m[0m     = "events.amazonaws.com"
+      [32m+[0m [0m[1m[0msource_arn[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mstatement_id[0m[0m  = "AllowExecutionFromCloudWatch"
+    }
+
+[1m  # aws_lambda_permission.price_refresh_for_title_with_sns[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_lambda_permission" "price_refresh_for_title_with_sns" {
+      [32m+[0m [0m[1m[0maction[0m[0m        = "lambda:InvokeFunction"
+      [32m+[0m [0m[1m[0mfunction_name[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mprincipal[0m[0m     = "sns.amazonaws.com"
+      [32m+[0m [0m[1m[0msource_arn[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mstatement_id[0m[0m  = "AllowExecutionFromSNS"
+    }
+
+[1m  # aws_lambda_permission.titles_refresh_for_author_with_sns[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_lambda_permission" "titles_refresh_for_author_with_sns" {
+      [32m+[0m [0m[1m[0maction[0m[0m        = "lambda:InvokeFunction"
+      [32m+[0m [0m[1m[0mfunction_name[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mprincipal[0m[0m     = "sns.amazonaws.com"
+      [32m+[0m [0m[1m[0msource_arn[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mstatement_id[0m[0m  = "AllowExecutionFromSNS"
+    }
+
+[1m  # aws_s3_bucket.lambda-pricewatch-cloudtrail[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_s3_bucket" "lambda-pricewatch-cloudtrail" {
+      [32m+[0m [0m[1m[0macceleration_status[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0macl[0m[0m                         = "private"
+      [32m+[0m [0m[1m[0marn[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mbucket[0m[0m                      = "lambda-pricewatch-tf-test-trail"
+      [32m+[0m [0m[1m[0mbucket_domain_name[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mbucket_regional_domain_name[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mforce_destroy[0m[0m               = true
+      [32m+[0m [0m[1m[0mhosted_zone_id[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0mpolicy[0m[0m                      = jsonencode(
+            {
+              [32m+[0m [0mStatement = [
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction    = "s3:GetBucketAcl"
+                      [32m+[0m [0mEffect    = "Allow"
+                      [32m+[0m [0mPrincipal = {
+                          [32m+[0m [0mService = "cloudtrail.amazonaws.com"
+                        }
+                      [32m+[0m [0mResource  = "arn:aws:s3:::lambda-pricewatch-tf-test-trail"
+                      [32m+[0m [0mSid       = "AWSCloudTrailAclCheck"
+                    },
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction    = "s3:PutObject"
+                      [32m+[0m [0mCondition = {
+                          [32m+[0m [0mStringEquals = {
+                              [32m+[0m [0ms3:x-amz-acl = "bucket-owner-full-control"
+                            }
+                        }
+                      [32m+[0m [0mEffect    = "Allow"
+                      [32m+[0m [0mPrincipal = {
+                          [32m+[0m [0mService = "cloudtrail.amazonaws.com"
+                        }
+                      [32m+[0m [0mResource  = "arn:aws:s3:::lambda-pricewatch-tf-test-trail/*"
+                      [32m+[0m [0mSid       = "AWSCloudTrailWrite"
+                    },
+                ]
+              [32m+[0m [0mVersion   = "2012-10-17"
+            }
+        )
+      [32m+[0m [0m[1m[0mregion[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mrequest_payer[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mwebsite_domain[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mwebsite_endpoint[0m[0m            = (known after apply)
+
+      [32m+[0m [0mversioning {
+          [32m+[0m [0m[1m[0menabled[0m[0m    = (known after apply)
+          [32m+[0m [0m[1m[0mmfa_delete[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # aws_sns_topic.author_refresh[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_sns_topic" "author_refresh" {
+      [32m+[0m [0m[1m[0marn[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m   = "author_refresh_topic"
+      [32m+[0m [0m[1m[0mpolicy[0m[0m = (known after apply)
+    }
+
+[1m  # aws_sns_topic.title_refresh[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_sns_topic" "title_refresh" {
+      [32m+[0m [0m[1m[0marn[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m   = "title_refresh_topic"
+      [32m+[0m [0m[1m[0mpolicy[0m[0m = (known after apply)
+    }
+
+[1m  # aws_sns_topic_subscription.price_refresh_for_title[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_sns_topic_subscription" "price_refresh_for_title" {
+      [32m+[0m [0m[1m[0marn[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0mconfirmation_timeout_in_minutes[0m[0m = 1
+      [32m+[0m [0m[1m[0mendpoint[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mendpoint_auto_confirms[0m[0m          = false
+      [32m+[0m [0m[1m[0mid[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mprotocol[0m[0m                        = "lambda"
+      [32m+[0m [0m[1m[0mraw_message_delivery[0m[0m            = false
+      [32m+[0m [0m[1m[0mtopic_arn[0m[0m                       = (known after apply)
+    }
+
+[1m  # aws_sns_topic_subscription.titles_refresh_for_author[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_sns_topic_subscription" "titles_refresh_for_author" {
+      [32m+[0m [0m[1m[0marn[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0mconfirmation_timeout_in_minutes[0m[0m = 1
+      [32m+[0m [0m[1m[0mendpoint[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mendpoint_auto_confirms[0m[0m          = false
+      [32m+[0m [0m[1m[0mid[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mprotocol[0m[0m                        = "lambda"
+      [32m+[0m [0m[1m[0mraw_message_delivery[0m[0m            = false
+      [32m+[0m [0m[1m[0mtopic_arn[0m[0m                       = (known after apply)
+    }
+
+[0m[1mPlan:[0m 32 to add, 0 to change, 0 to destroy.[0m
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+
