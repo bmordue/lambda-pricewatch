@@ -1,7 +1,7 @@
 resource "aws_cloudtrail" "default" {
   name                          = "tf-cloudtrail"
-  s3_bucket_name                = "${aws_s3_bucket.lambda-pricewatch-cloudtrail.id}"
-  s3_key_prefix                 = "${var.project_name}"
+  s3_bucket_name                = aws_s3_bucket.lambda-pricewatch-cloudtrail.id
+  s3_key_prefix                 = var.project_name
   include_global_service_events = true
 }
 
@@ -39,4 +39,6 @@ resource "aws_s3_bucket" "lambda-pricewatch-cloudtrail" {
     ]
 }
 POLICY
+
 }
+

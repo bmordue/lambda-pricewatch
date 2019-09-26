@@ -12,3 +12,4 @@ resource "aws_cloudwatch_event_rule" "monthly" {
   name                = "monthly"
   schedule_expression = "rate(30 days)"
 }
+
