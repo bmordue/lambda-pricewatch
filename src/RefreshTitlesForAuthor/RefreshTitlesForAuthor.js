@@ -109,9 +109,6 @@ function prepareDynamoParams(item) {
                     "Author": {
                         S: item.ItemAttributes.Author
                     },
-                    "Manufacturer": {
-                        S: item.ItemAttributes.Manufacturer
-                    },
                     "Title": {
                         S: item.ItemAttributes.Title
                     }
@@ -119,6 +116,9 @@ function prepareDynamoParams(item) {
             }
         }
     };
+    if (item.ItemAttributes.Manufacturer) {
+        params.Item.ItemAttributes.M.Manufacturer = { S: Item.ItemAttributes.Manufacturer };
+    }
     return params;
 }
 
@@ -128,6 +128,8 @@ function addTitleToDbIfNotPresent(item, callback) {
         if (err) {
             console.log("Error putting item in DB");
             console.log(err, err.data);
+            console.log("Params for insertion: ");
+            console.log(util.inspect(params, null, 4));
         } else {
             console.log("Successfully put item in DB");
             console.log(data);

@@ -14,6 +14,8 @@ var testProdAdvClient = function(dummy, callback) {
     callback(null, dummySearchResults);
 };
 
+process.env["TITLES_TABLE_NAME"] = "pricewatch_titles";
+
 console.log("\n");
 lambdaFunc.lambda_handler(testEvent, testContext, function(err, msg) {
     console.log("--------");
