@@ -212,6 +212,10 @@ function titlesForAuthor(params, callback) {
 	needle.get(reqUrl, options, function(err, result) {
 		if (err) return callback(err);
 		log.debug(result.statusCode, "Fetched query result");
+		if (result.statusCode >= 400) {
+			log.debug(result.body, "Request failure");
+			return callback(new Error("Bookstore request failed"));
+		}
 
 		const $ = cheerio.load(result.body);
 
