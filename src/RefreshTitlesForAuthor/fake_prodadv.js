@@ -212,7 +212,6 @@ function titlesForAuthor(params, callback) {
 	needle.get(reqUrl, options, function(err, result) {
 		if (err) return callback(err);
 		log.debug(result.statusCode, "Fetched query result");
-		fs.writeFileSync("titlesForAuthor.scratch.html", result.body);
 
 		const $ = cheerio.load(result.body);
 
