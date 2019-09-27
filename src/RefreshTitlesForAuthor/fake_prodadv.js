@@ -30,22 +30,22 @@ module.exports = function(query, params, callback) {
 
 	var asin = params.ItemId;
 	if (asin) {
-
-	switch (query) {
-		case 'SimilarityLookup':
-			return similarityLookup(asin, callback);
-		case 'ItemSearch':
-			return itemSearch(asin, callback);
-		case 'ItemLookup':
-			return itemLookup(asin, callback);
-		default:
-			return callback(new Error('Unrecognised query term: ' + query));
+		switch (query) {
+			case 'SimilarityLookup':
+				return similarityLookup(asin, callback);
+			case 'ItemSearch':
+				return itemSearch(asin, callback);
+			case 'ItemLookup':
+				return itemLookup(asin, callback);
+			default:
+				return callback(new Error('Unrecognised query term: ' + query));
+		}
 	}
-	}
 
+	// TODO: author/ASIN search not currently exclusive...
 	let author = params.Author;
 	if (author) {
-		return titlesForAuthor(author, callback);
+		return titlesForAuthor(params, callback);
 	}
 }
 
@@ -201,9 +201,12 @@ function matchAuthor(expected, actual) {
 }
 
 
-function titlesForAuthor(author, callback) {
-	const urlTemplate = "https://www.amazon.co.uk/s?k=%s&rh=n%3A341677031&dc&qid=1569572181&rnid=1642204031&ref=is_r_n_2";
-	const reqUrl = util.format(urlTemplate, author.replace(' ', '+'));
+function titlesForAuthor(params, callback) {
+	const author = params.Author;
+	const site = "https://www.amazon.co.uk";
+	const urlTemplate = "%s/s?k=%s&rh=n%3A341677031&dc&qid=1569572181&rnid=1642204031&ref=is_r_n_2";
+	const reqUrl = util.format(urlTemplate, site, author.replace(' ', '+'));
+	// TODO: include page number in reqUrl
 	const options = {};
 
 	needle.get(reqUrl, options, function(err, result) {
@@ -212,44 +215,45 @@ function titlesForAuthor(author, callback) {
 		fs.writeFileSync("titlesForAuthor.scratch.html", result.body);
 
 		const $ = cheerio.load(result.body);
-		const resultsCountStr = $(".s-mobile-toolbar > .s-line-clamp-2 > div > span > span").first().text().trim();
-		log.debug(util.inspect(resultsCountStr), "Extracted results count");
-		let resultsCount = 0;
-		if (resultsCountStr) {
-			try { resultsCount = resultsCountStr.parseInt(); } catch (e) { log.debug(resultsCountStr, "Could not parse results count as int"); }
+
+		let totalPages = params.Page || 1;
+		const nextExists = false; //check whether Next page button is enabled
+		if (nextExists) {
+			totalPages++;
 		}
-		//$("div.s-result-list").childElementCount;
-		const resultsPerPage = 17;
-		const totalPages = Math.floor(resultsCount / resultsPerPage) + 1;
 
 		let pageOfItems = [];
 
-//		const resultsListSel = "div.s-result-list > div";
-//		const detailsSel = "div > span > div > div > div > div > div > a"; // rel to resultsListSel
-//		const titleSel = "div > h2"; // rel to detailsSel
-
+		let totalResults = 0;
 
 		$("div.s-result-list > div").each(function(index, element) {
-			if (index > 0) return;
-//			if (index == 0) {log.debug(util.inspect(element, null, 2)); }
-//			log.debug(element.attribs["data-asin"], "data-asin");
-			log.debug($(this).attr("data-asin"), "also data-asin");
-//			log.debug($(this).text(), "this.text()");
-// div.s-result-list > div:nth-child(1) ^^^ div > span > div > div ^^ div > div > div > a > div > h2 > span
-			let details = $(this, "div > span > div > div > div > div > div > a");
-			log.debug(details.attr("title"), "attr(title)");
-//			log.debug(details.text().trim(), "details.text");
-//			log.debug(util.inspect(details, null, 3), "details");
-//			log.debug(details.text(), "details.text()");
-			let resultItemTitle = $("div > h2", details).text().trim();
-			log.debug($("div", details).text().trim(), "details > div .text()");
-			let resultItemAuthor = $("div > div > span:nth-child(2)", details).text().trim(); // check this against author param
-			let resultItemEdition = $("div:nth-child(3) > div", details).text().trim(); // should be "Kindle Edition"
-			let resultItemPrice = $("div:nth-child(3) > div:nth-child(2) > div > span", details).text().trim();
-			// any other details -- eg, item direct URL? ASIN!
+//			if (index > 0) return;
 
-			let itemDetails = {Author: resultItemAuthor, Title: resultItemTitle, Price: resultItemPrice};
-			log.debug(itemDetails, "itemDetails");
+			let asin = $(this).attr("data-asin");
+
+			let details = $(this, "div > span > div > div > div > div > div > a");
+
+			let resultItemTitle = $("div > h2 > a > span", details).text().trim();
+
+			let resultItemAuthor = $("div > div > a", details).first().text().trim(); // check this against author param
+			let resultItemEdition = $(".a-size-base.a-link-normal.a-text-bold", "div", details).first().text().trim(); // should be "Kindle Edition"
+			let resultItemPrice = $(".a-offscreen", details).first().text().trim();
+			let resultItemUrl = $("a.a-link-normal", details).first().attr("href");
+
+			let itemDetails = {
+				Price: resultItemPrice,
+				ASIN: asin,
+				DetailPageURL: util.format("%s%s", site, resultItemUrl),
+				ItemAttributes: {
+					Author: resultItemAuthor,
+					Title: resultItemTitle,
+				},
+				ListPrice: {
+					CurrencyCode: "GBP",
+					Amount: resultItemPrice.split('£')[1]
+				}
+			};
+//			log.debug(itemDetails, "itemDetails");
 
 			// validate author and edition
 			if (!matchAuthor(author, resultItemAuthor)) {
@@ -258,12 +262,11 @@ function titlesForAuthor(author, callback) {
 				log.debug(util.format("Ignoring item: does not appear to be Kindle Edition (%s)", resultItemEdition));
 			} else {
 				pageOfItems.push(itemDetails);
+				totalResults++;
 			}
 		});
 
-		console.log(util.format("totalPages: %s; resultsCount: %s", totalPages, resultsCount));
-
-		callback(null, { Items: { TotalPages: totalPages, TotalResults: resultsCount,  Item: pageOfItems } });
+		callback(null, { Items: { TotalPages: totalPages, TotalResults: totalResults,  Item: pageOfItems } });
 	});
 
 }

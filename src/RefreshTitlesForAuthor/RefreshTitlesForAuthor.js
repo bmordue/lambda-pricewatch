@@ -35,7 +35,7 @@ function handleNotification(record) {
     };
     getSearchResultsPage(params, 1, function(err, resultsPage) {
         if (err) { reject(err); }
-        console.log(util.format("handleNotification, resultsPage: %j", resultsPage));
+//        console.log(util.format("handleNotification, resultsPage: %j", resultsPage));
 
         handleSearchResultsPage(resultsPage, authorName, function(err) {
             err ? reject(err) : resolve();
@@ -84,7 +84,7 @@ function getSearchResultsPage(params, page, callback) {
     params.ItemPage = page;
 //    callback(null, {Items: {TotalPages: 0, TotalResults: 0, Item: []}});
     prodAdvClient.call(this, "ItemSearch", params, function(err, result) {
-        console.log(util.format("getSearchResultsPage: result: %j", result));
+//        console.log(util.format("getSearchResultsPage: result: %j", result));
         callback(err, result);
     });
 }
