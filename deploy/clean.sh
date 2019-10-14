@@ -12,22 +12,13 @@ CUR_DIR=$(pwd)
 echo "Remove built artifacts at $TARGET_DIR"
 rm -r $TARGET_DIR
 
-echo 'Install npm dependencies'
+echo 'Clean npm dependencies'
 cd $SRC_DIR
-for d in $(ls -1)
+for d in *
 do
-  cd $d
-  npm install
+  cd $d && rm -rf node_modules
   cd ..
 done
-
-echo 'Zip sources'
-cd $DEPLOY_DIR
-sh ./zip_sources.sh
-
-echo 'Terraform apply'
-cd $TF_DIR
-terraform apply
 
 echo 'Done'
 cd $CUR_DIR

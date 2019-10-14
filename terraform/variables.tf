@@ -1,5 +1,5 @@
 variable "cli_profile" {
-  default = "default"
+  default = "deployer"
 }
 
 variable "region" {
@@ -15,6 +15,7 @@ variable "project_name" {
 }
 
 variable "amzn_service_host" {
+  default = "amazon.co.uk"
 }
 
 variable "amzn_access_key_id" {
