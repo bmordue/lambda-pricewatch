@@ -80,7 +80,7 @@ function processDataForSimilarityLookup(data, callback) {
 			return callback(null, {});
 		}
 		try {
-			var carousel = JSON.parse(carouselOptions.replace('\"', '"'));
+			var carousel = JSON.parse(carouselOptions.replace('"', '"'));
 		} catch (e) {
 			log.debug(carouselOptions, 'carouselOptions');
 			return callback(null, {'Items': {'Item': items}});
@@ -229,8 +229,7 @@ function titlesForAuthor(params, callback) {
 
 		let totalResults = 0;
 
-		$("div.s-result-list > div").each(function(index, element) {
-//			if (index > 0) return;
+		$("div.s-result-list > div").each(function() {
 
 			let asin = $(this).attr("data-asin");
 
@@ -256,7 +255,6 @@ function titlesForAuthor(params, callback) {
 					Amount: resultItemPrice.split('£')[1]
 				}
 			};
-//			log.debug(itemDetails, "itemDetails");
 
 			// validate author and edition
 			if (!matchAuthor(author, resultItemAuthor)) {

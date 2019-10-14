@@ -14,7 +14,7 @@ rm -r $TARGET_DIR
 
 echo 'Clean npm dependencies'
 cd $SRC_DIR
-for d in $(ls -1)
+for d in *
 do
   cd $d && rm -rf node_modules
   cd ..
