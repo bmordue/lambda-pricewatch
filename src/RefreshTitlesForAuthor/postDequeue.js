@@ -12,7 +12,7 @@ exports.lambda_handler = function(event, context, callback) {
     var amazonServiceHost = process.env.AMZN_SERVICE_HOST;
 
     prodAdvClient = aws.createProdAdvClient(keyId, keySecret, associateTag, { host: amazonServiceHost});
-    
+
     // expect a single event, representing a request to ProdAdv API
     var params = event.params;
     getSearchResultsPage(params, function(err, resultsPage) {
@@ -30,7 +30,7 @@ exports.lambda_handler = function(event, context, callback) {
                 var pages = pageNumbersAsList(resultsPage.Items.TotalPages);
                 return async.each(pages, function(page, each_cb) {
                     params.ItemPage = page;
-                    enqueueRequest(params, callback);
+                    enqueueRequest(params, each_cb);
                 }, callback);
             } else {
                 return callback();
@@ -56,7 +56,7 @@ function handleResultsPage(resultsPage, callback) {
 
 // post request object to SQS
 function enqueueRequest(params, callback) {
-    throw new Error("Not implemented yet");
+    throw new Error(util.format("Not implemented yet; params: %j", params));
 }
 
 function prepareDynamoParams(item) {

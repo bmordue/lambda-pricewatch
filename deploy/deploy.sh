@@ -22,7 +22,7 @@ cd $SRC_DIR
 for d in $(ls -1)
 do
   cd $d
-  if [ -z package.json]
+  if [ -z package.json ]
   then
     npm install > $TMP_DIR/$d_npm_install.log
   fi

@@ -3,7 +3,7 @@ source './test.env'
 #set -x
 
 mkdir -p tmp
-for f in $(ls -1 ../src)
+for f in $(../src/*)
 do
   function_name=$f
   echo "Manually invoke $function_name"

@@ -15,7 +15,7 @@ exports.lambda_handler = function(event, context, callback) {
       sns.publish({
           TopicArn: process.env.TITLE_REFRESH_TOPIC_ARN,
           Message: asin
-      }, function(err, data) {
+      }, function(err) {
         if (err) {
           console.log("Error publishing to topic: " + err);
         } else {
