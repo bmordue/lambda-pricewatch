@@ -1,16 +1,32 @@
 variable "cli_profile" {
-  default = "default"
+  default = "deployer"
 }
+
 variable "region" {
-  default = "eu-west-1"
+  default = "us-east-1"
 }
+
 variable "node_runtime" {
-  default = "nodejs6.10"
+  default = "nodejs10.x"
 }
+
 variable "project_name" {
   default = "lambda-pricewatch"
 }
-variable "amzn_service_host" {}
-variable "amzn_access_key_id" {}
-variable "amzn_access_key_secret" {}
-variable "amzn_associate_tag" {}
+
+variable "amzn_service_host" {
+  default = "amazon.co.uk"
+}
+
+variable "amzn_access_key_id" {
+  default = "DEFAULT"
+}
+
+variable "amzn_access_key_secret" {
+  default = "DEFAULT"
+}
+
+variable "amzn_associate_tag" {
+  default = "DEFAULT"
+}
+

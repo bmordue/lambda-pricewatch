@@ -5,7 +5,10 @@
   "main": "RefreshTitlesForAuthor.js",
   "dependencies": {
     "async": "^2.3.0",
-    "aws-sdk": "^2.41.0"
+    "aws-lib": "^0.3.0",
+    "aws-sdk": "^2.41.0",
+    "cheerio": "^1.0.0-rc.3",
+    "needle": "^2.4.0"
   },
   "devDependencies": {},
   "scripts": {

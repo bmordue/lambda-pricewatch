@@ -1,12 +1,12 @@
 resource "aws_cloudtrail" "default" {
   name                          = "tf-cloudtrail"
-  s3_bucket_name                = "${aws_s3_bucket.lambda-pricewatch-cloudtrail.id}"
-  s3_key_prefix                 = "${var.project_name}"
+  s3_bucket_name                = aws_s3_bucket.lambda-pricewatch-cloudtrail.id
+  s3_key_prefix                 = var.project_name
   include_global_service_events = true
 }
 
 resource "aws_s3_bucket" "lambda-pricewatch-cloudtrail" {
-  bucket        = "lambda-pricewatch-tf-test-trail"
+  bucket        = "lambda-pricewatch-tf-test-trail-2"
   force_destroy = true
 
   policy = <<POLICY
@@ -20,7 +20,7 @@ resource "aws_s3_bucket" "lambda-pricewatch-cloudtrail" {
               "Service": "cloudtrail.amazonaws.com"
             },
             "Action": "s3:GetBucketAcl",
-            "Resource": "arn:aws:s3:::lambda-pricewatch-tf-test-trail"
+            "Resource": "arn:aws:s3:::lambda-pricewatch-tf-test-trail-2"
         },
         {
             "Sid": "AWSCloudTrailWrite",
@@ -29,7 +29,7 @@ resource "aws_s3_bucket" "lambda-pricewatch-cloudtrail" {
               "Service": "cloudtrail.amazonaws.com"
             },
             "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::lambda-pricewatch-tf-test-trail/*",
+            "Resource": "arn:aws:s3:::lambda-pricewatch-tf-test-trail-2/*",
             "Condition": {
                 "StringEquals": {
                     "s3:x-amz-acl": "bucket-owner-full-control"
@@ -39,4 +39,6 @@ resource "aws_s3_bucket" "lambda-pricewatch-cloudtrail" {
     ]
 }
 POLICY
+
 }
+

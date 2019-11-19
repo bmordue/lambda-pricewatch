@@ -4,7 +4,7 @@ resource "aws_dynamodb_table" "pricewatch_titles" {
   write_capacity = 10
   hash_key       = "ASIN"
 
-  stream_enabled = true
+  stream_enabled   = true
   stream_view_type = "NEW_AND_OLD_IMAGES"
 
   attribute {
@@ -19,7 +19,7 @@ resource "aws_dynamodb_table" "pricewatch_authors" {
   write_capacity = 10
   hash_key       = "AuthorName"
 
-  stream_enabled = true
+  stream_enabled   = true
   stream_view_type = "NEW_AND_OLD_IMAGES"
 
   attribute {
