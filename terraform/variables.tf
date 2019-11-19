@@ -3,11 +3,11 @@ variable "cli_profile" {
 }
 
 variable "region" {
-  default = "eu-west-1"
+  default = "us-east-1"
 }
 
 variable "node_runtime" {
-  default = "nodejs8.10"
+  default = "nodejs10.x"
 }
 
 variable "project_name" {
