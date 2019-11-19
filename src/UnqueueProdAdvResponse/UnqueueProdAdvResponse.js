@@ -1,5 +1,4 @@
 var async = require("async");
-var aws_sdk = require("aws-sdk");
 var util = require("util");
 var SQS = require('aws-sdk/clients/sqs');
 

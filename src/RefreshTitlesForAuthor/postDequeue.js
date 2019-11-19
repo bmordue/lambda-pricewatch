@@ -56,7 +56,8 @@ function handleResultsPage(resultsPage, callback) {
 
 // post request object to SQS
 function enqueueRequest(params, callback) {
-    throw new Error(util.format("Not implemented yet; params: %j", params));
+    console.log(params)
+    throw new Error("Not implemented yet");
 }
 
 function prepareDynamoParams(item) {
