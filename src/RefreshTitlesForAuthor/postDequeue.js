@@ -58,6 +58,7 @@ function handleResultsPage(resultsPage, callback) {
 function enqueueRequest(params, callback) {
     console.log(params)
     throw new Error("Not implemented yet");
+    callback(params);
 }
 
 function prepareDynamoParams(item) {
