@@ -10,8 +10,8 @@
           }
         },
         "NewImage": {
-          "ASIN": {
-            "S": "888"
+          "Message": {
+            "S": "New item!"
           },
           "Id": {
             "N": "101"
@@ -21,9 +21,9 @@
         "SequenceNumber": "111",
         "SizeBytes": 26
       },
-      "awsRegion": "eu-west-1",
+      "awsRegion": "us-west-2",
       "eventName": "INSERT",
-      "eventSourceARN": "arn:aws:dynamodb:eu-west-1:account-id:table/ExampleTableWithStream/stream/2015-06-27T00:48:05.899",
+      "eventSourceARN": "arn:aws:dynamodb:us-west-2:account-id:table/ExampleTableWithStream/stream/2015-06-27T00:48:05.899",
       "eventSource": "aws:dynamodb"
     },
     {
@@ -55,9 +55,9 @@
         },
         "StreamViewType": "NEW_AND_OLD_IMAGES"
       },
-      "awsRegion": "eu-west-1",
+      "awsRegion": "us-west-2",
       "eventName": "MODIFY",
-      "eventSourceARN": "arn:aws:dynamodb:eu-west-1:account-id:table/ExampleTableWithStream/stream/2015-06-27T00:48:05.899",
+      "eventSourceARN": "arn:aws:dynamodb:us-west-2:account-id:table/ExampleTableWithStream/stream/2015-06-27T00:48:05.899",
       "eventSource": "aws:dynamodb"
     },
     {
@@ -81,9 +81,9 @@
         },
         "StreamViewType": "NEW_AND_OLD_IMAGES"
       },
-      "awsRegion": "eu-west-1",
+      "awsRegion": "us-west-2",
       "eventName": "REMOVE",
-      "eventSourceARN": "arn:aws:dynamodb:eu-west-1:account-id:table/ExampleTableWithStream/stream/2015-06-27T00:48:05.899",
+      "eventSourceARN": "arn:aws:dynamodb:us-west-2:account-id:table/ExampleTableWithStream/stream/2015-06-27T00:48:05.899",
       "eventSource": "aws:dynamodb"
     }
   ]
