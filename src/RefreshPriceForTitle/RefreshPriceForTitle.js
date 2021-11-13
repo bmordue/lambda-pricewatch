@@ -11,6 +11,8 @@ exports.lambda_handler = function(event, context, callback) {
     var associateTag = process.env.AMZN_ASSOCIATE_TAG;
     var amazonServiceHost = process.env.AMZN_SERVICE_HOST;
 
+    console.log(util.format("DEBUG: function received event:  %j", event));
+
     prodAdvClient = aws.createProdAdvClient(keyId, keySecret, associateTag, { host: amazonServiceHost});
 
     async.each(event.Records, handleNotification, function(err) {
@@ -41,7 +43,7 @@ function getPriceForAsin(asin, callback) {
             ASIN: asin,
             ListPrice: result.ItemAttributes.ListPrice
         };
-        
+
         //DEBUG
         console.log("-- UPDATE PRICE FOR ITEM --");
         console.log(JSON.stringify(item, null, 2));
@@ -69,25 +71,25 @@ function prepareDynamoParams(item) {
     var params = {
         ExpressionAttributeNames: {
             "#price": "ListPrice"
-        }, 
+        },
         ExpressionAttributeValues: {
             ":P": {
                 M: {
                     "Amount": {
                         N: item.ListPrice.Amount
-                    }, 
+                    },
                     "CurrencyCode": {
                         S: item.ListPrice.CurrencyCode
                     }
                 }
             }
-        }, 
+        },
         Key: {
             "ASIN": {
                 S: item.ASIN
             }
         },
-        TableName: process.env.TITLES_TABLE_NAME, 
+        TableName: process.env.TITLES_TABLE_NAME,
         UpdateExpression: "SET #price = :P"
      };
      return params;

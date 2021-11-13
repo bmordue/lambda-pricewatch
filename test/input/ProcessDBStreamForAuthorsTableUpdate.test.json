@@ -11,7 +11,7 @@
         },
         "NewImage": {
           "AuthorName": {
-            "S": "William Gibson"
+            "S": "Alice Jones"
           },
           "Id": {
             "N": "101"
@@ -21,9 +21,9 @@
         "SequenceNumber": "111",
         "SizeBytes": 26
       },
-      "awsRegion": "eu-west-1",
+      "awsRegion": "us-west-2",
       "eventName": "INSERT",
-      "eventSourceARN": "arn:aws:dynamodb:eu-west-1:account-id:table/ExampleTableWithStream/stream/2015-06-27T00:48:05.899",
+      "eventSourceARN": "arn:aws:dynamodb:us-west-2:account-id:table/ExampleTableWithStream/stream/2015-06-27T00:48:05.899",
       "eventSource": "aws:dynamodb"
     },
     {
@@ -31,8 +31,8 @@
       "eventVersion": "1.0",
       "dynamodb": {
         "OldImage": {
-          "Message": {
-            "S": "New item!"
+          "AuthorName": {
+            "S": "Alice Jones"
           },
           "Id": {
             "N": "101"
@@ -46,8 +46,8 @@
         },
         "SizeBytes": 59,
         "NewImage": {
-          "Message": {
-            "S": "This item has changed"
+          "AuthorName": {
+            "S": "Alice NewName-Jones"
           },
           "Id": {
             "N": "101"
@@ -55,9 +55,9 @@
         },
         "StreamViewType": "NEW_AND_OLD_IMAGES"
       },
-      "awsRegion": "eu-west-1",
+      "awsRegion": "us-west-2",
       "eventName": "MODIFY",
-      "eventSourceARN": "arn:aws:dynamodb:eu-west-1:account-id:table/ExampleTableWithStream/stream/2015-06-27T00:48:05.899",
+      "eventSourceARN": "arn:aws:dynamodb:us-west-2:account-id:table/ExampleTableWithStream/stream/2015-06-27T00:48:05.899",
       "eventSource": "aws:dynamodb"
     },
     {
@@ -72,8 +72,8 @@
         "SizeBytes": 38,
         "SequenceNumber": "333",
         "OldImage": {
-          "Message": {
-            "S": "This item has changed"
+          "AuthorName": {
+            "S": "Alice NewName-Jones"
           },
           "Id": {
             "N": "101"
@@ -81,9 +81,9 @@
         },
         "StreamViewType": "NEW_AND_OLD_IMAGES"
       },
-      "awsRegion": "eu-west-1",
+      "awsRegion": "us-west-2",
       "eventName": "REMOVE",
-      "eventSourceARN": "arn:aws:dynamodb:eu-west-1:account-id:table/ExampleTableWithStream/stream/2015-06-27T00:48:05.899",
+      "eventSourceARN": "arn:aws:dynamodb:us-west-2:account-id:table/ExampleTableWithStream/stream/2015-06-27T00:48:05.899",
       "eventSource": "aws:dynamodb"
     }
   ]

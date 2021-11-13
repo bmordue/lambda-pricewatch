@@ -1,0 +1,17 @@
+{
+  "name": "UnqueueProdAdvResponse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "UnqueueProdAdvResponse.js",
+  "dependencies": {
+    "async": "^2.3.0",
+    "aws-lib": "^0.3.0",
+    "aws-sdk": "^2.41.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

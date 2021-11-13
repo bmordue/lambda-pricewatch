@@ -1,0 +1,35 @@
+{
+    "Records": [
+        {
+            "EventSource": "aws:sns",
+            "EventVersion": "1.0",
+            "EventSubscriptionArn": "arn:aws:sns:eu-west-2:285774518219:prodadv_request_queued_topic:c48dc8ed-5a7c-420b-837c-391723a8558d",
+            "Sns": {
+                "Type": "Notification",
+                "MessageId": "7ca04ecb-b92d-52a9-9870-1f70fdce266e",
+                "TopicArn": "arn:aws:sns:eu-west-2:285774518219:prodadv_request_queued_topic",
+                "Subject": "go",
+                "Message": "go",
+                "Timestamp": "2017-06-14T14:05:23.421Z",
+                "SignatureVersion": "1",
+                "Signature": "V6p7nSOLTE3v7vkmYytOPb3fx8BvSu81WB6zv3XwziWXK2lqoFTm5PNNmW5MwyYg9N4kfc6Hs9BSWOFitYi773I8S+VVmb8r/PBg3tFcxRR+zxIH5iUZF4aP1brgqiHxuN31hZWtzH8n/OoRe+gaQuiH+WL3ekSiH3m2C1Yqdn3BvcXmSnJNhHbgmPeuZzzbOY6oNxM8V9qUu/6vKN/RNQT3xxTVA9H+e7SkllJBB1/iaZAMIFt17A8cwVHGXaalQUZCmttV3YO9zLjVEQOM8fclVl2HvI/rxmIBFNmUuQ5wVi/JKvli4xdFQHq4WWJs5xLeDIF42WE8fgTfVeb7/g==",
+                "SigningCertUrl": "https://sns.eu-west-2.amazonaws.com/SimpleNotificationService-b95095beb82e8f6a046b3aafc7f4149a.pem",
+                "UnsubscribeUrl": "https://sns.eu-west-2.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:eu-west-2:285774518219:prodadv_request_queued_topic:c48dc8ed-5a7c-420b-837c-391723a8558d",
+                "MessageAttributes": {
+                    "AWS.SNS.MOBILE.MPNS.Type": {
+                        "Type": "String",
+                        "Value": "token"
+                    },
+                    "AWS.SNS.MOBILE.MPNS.NotificationClass": {
+                        "Type": "String",
+                        "Value": "realtime"
+                    },
+                    "AWS.SNS.MOBILE.WNS.Type": {
+                        "Type": "String",
+                        "Value": "wns/badge"
+                    }
+                }
+            }
+        }
+    ]
+}
