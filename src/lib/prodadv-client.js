@@ -44,10 +44,25 @@ function createProdAdvClient(keyId, keySecret, associateTag, options) {
         var author = params.Author;
         var itemPage = params.ItemPage || 1;
         
-        // Construct Amazon search URL for Kindle books by author
+        // Amazon search parameters for Kindle books
+        // rh: Restricts search to Kindle Store (n:341677031 is the category ID for Kindle books)
+        // qid: Query ID (may be used for session or search tracking)
+        // rnid: Refined navigation ID (used for filtering)
+        const KINDLE_CATEGORY_ID = '341677031';
+        const SEARCH_RH = `rh=n%3A${KINDLE_CATEGORY_ID}`;
+        const SEARCH_QID = 'qid=1569572181';
+        const SEARCH_RNID = 'rnid=1642204031';
+        const SEARCH_REF = 'ref=is_r_n_2';
         var searchQuery = encodeURIComponent(author);
-        var searchUrl = util.format('%s/s?k=%s&rh=n%%3A341677031&dc&qid=1569572181&rnid=1642204031&ref=is_r_n_2', 
-                                   baseUrl, searchQuery);
+        var searchUrl = util.format(
+            '%s/s?k=%s&%s&dc&%s&%s&%s',
+            baseUrl,
+            searchQuery,
+            SEARCH_RH,
+            SEARCH_QID,
+            SEARCH_RNID,
+            SEARCH_REF
+        );
         
         if (itemPage > 1) {
             searchUrl += '&page=' + itemPage;
