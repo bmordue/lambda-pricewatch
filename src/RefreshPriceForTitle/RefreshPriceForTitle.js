@@ -1,5 +1,5 @@
 var async = require("async");
-var aws = require("aws-lib");
+var aws = require("../lib/prodadv-client");
 var aws_sdk = require("aws-sdk");
 var db = new aws_sdk.DynamoDB();
 var util = require("util");
@@ -33,7 +33,6 @@ function handleNotification(record, callback) {
 }
 
 function getPriceForAsin(asin, callback) {
-    params.ItemPage = page;
     prodAdvClient.call("ItemLookup", { ItemId: asin }, function(err, result) {
         if (err) {
             console.log(err, err.stack);
@@ -41,7 +40,7 @@ function getPriceForAsin(asin, callback) {
         }
         var item = {
             ASIN: asin,
-            ListPrice: result.ItemAttributes.ListPrice
+            ListPrice: result.Items.Item.ItemAttributes.ListPrice
         };
 
         //DEBUG

@@ -4,8 +4,7 @@
   "description": "",
   "main": "RefreshPriceForTitle.js",
   "dependencies": {
-    "async": "^2.3.0",
-    "aws-lib": "^0.3.0",
+    "async": "^3.2.2",
     "aws-sdk": "^2.41.0"
   },
   "devDependencies": {},

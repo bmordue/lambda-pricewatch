@@ -1,5 +1,5 @@
 var async = require("async");
-var aws = require("aws-lib");
+var aws = require("../lib/prodadv-client");
 var aws_sdk = require("aws-sdk");
 var db = new aws_sdk.DynamoDB();
 var util = require("util");
