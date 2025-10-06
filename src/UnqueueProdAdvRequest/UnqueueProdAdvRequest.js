@@ -1,5 +1,5 @@
 var async = require("async");
-var aws = require("aws-lib");
+var aws = require("../lib/prodadv-client");
 var SNS = require('aws-sdk/clients/sns');
 var SQS = require('aws-sdk/clients/sqs');
 var util = require("util");

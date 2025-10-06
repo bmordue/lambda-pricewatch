@@ -4,8 +4,7 @@
   "description": "",
   "main": "ProcessDBStreamForTitlesTableUpdate.js",
   "dependencies": {
-    "async": "^3.2.2",
-    "aws-lib": "^0.3.0"
+    "async": "^3.2.2"
   },
   "devDependencies": {},
   "scripts": {
